@@ -1,0 +1,124 @@
+#tournamentNavBar
+{
+    position: fixed;
+    z-index: 9;
+    bottom: 2rem;
+    height: 70px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .6s;
+}
+
+#navBarBtn
+{
+    position: absolute;
+    right: 2rem;
+
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 3px 6px 12px #7557F730;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+    transition: .3s;
+
+}
+.expand #navBarBtn{right: 1rem;}
+.hidden #navBarBtn{transform: translateY(calc(60% + 2rem));}
+
+.darkMode #navBarBtn{background: var(--moderated-black); box-shadow: 3px 6px 12px #2D2D2D30;}
+
+.bar
+{
+    height: 4px;
+    width: 26px;
+    background: white;
+    border-radius: 10px;
+}
+.bar.short {width: 16px; transform: translateX(-4px);}
+
+#hideNavBar 
+{
+    position: absolute;
+    right: 1.1rem;
+    transform: translateY(18px);
+    
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: var(--moderated-black);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .3s;
+}
+.hidden #hideNavBar{transform: translateY(calc(20% + 2rem));}
+#hideNavBar i {color: var(--white); font-size: 14px;}
+
+.darkMode #hideNavBar{background: var(--moderated-white)}
+.darkMode #hideNavBar i {color: var(--moderated-black); font-size: 14px;}
+
+.expand nav
+{
+    width: 90%;
+    padding-right: 50px;
+    background: var(--light-violet);
+    height: 60px;
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    animation: showNavContent .5s;
+}
+#tournamentNavBar:not(.expand) nav{display: none; animation: hideNavContent 1s;}
+
+.expand nav .link
+{
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: showItems .5s;
+}
+.expand nav .link i{font-size: 22px; margin-bottom: 2px; color: var(--moderated-white)}
+.expand nav .link p{font-size: 12px; font-weight: 200; color: var(--moderated-white)}
+
+
+/***************
+    ANIMATIONS
+****************/
+@keyframes showNavContent{
+    0%
+    {
+        overflow: hidden;
+        z-index: -1;
+        position: absolute;
+        right: 8%;
+        width: 50px;
+    }
+    100%
+    {
+        overflow: hidden;
+        z-index: -1;
+        position: absolute;
+        right: 5%;
+        width: 90%;
+    }
+}
+@keyframes showItems {
+    0%{opacity: 0;}
+    80%{opacity: 0;}
+    100%{opacity:1;}
+}

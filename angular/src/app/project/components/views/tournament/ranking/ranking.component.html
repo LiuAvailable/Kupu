@@ -1,0 +1,57 @@
+<header>
+    <div id="back">
+        <i class="fa-solid fa-arrow-left"></i>
+    </div>
+    <h1>Mirror Cup</h1>
+    <p>Clasificaciones</p>
+</header>
+
+<div id="rankingOptions" #btnsBox>
+    <div class="rankingOption" (click)="changeRanking(attakers, btnsBox)" #attakers>
+        <div></div>
+        <p>Atacantes</p>
+    </div>
+    <div class="rankingOption active" (click)="changeRanking(tournament, btnsBox)" #tournament>
+        <div></div>
+        <p>Torneo</p>
+    </div>
+    <div class="rankingOption" (click)="changeRanking(defenders, btnsBox)" #defenders>
+        <div></div>
+        <p>Defensores</p>
+    </div>
+</div>
+
+<div class="ranking">
+    <div class="row">
+        <div class="position"><p>1</p></div>
+        <p name="short_name">LPT</p>
+        <p name="win">2</p>
+        <p name="loss">0</p>
+        <p name="stars">12.5</p>
+        <p name="percentage">88.4</p>
+    </div>
+    <div class="row">
+        <div class="position"><p>1</p></div>
+        <p name="short_name">LPT</p>
+        <p name="win">2</p>
+        <p name="loss">0</p>
+        <p name="stars">12.5</p>
+        <p name="percentage">88.4</p>
+    </div>
+    <div class="row">
+        <div class="position"><p>1</p></div>
+        <p name="short_name">LPT</p>
+        <p name="win">2</p>
+        <p name="loss">0</p>
+        <p name="stars">12.5</p>
+        <p name="percentage">88.4</p>
+    </div>
+    <div class="row">
+        <div class="position"><p>1</p></div>
+        <p name="short_name">LPT</p>
+        <p name="win">2</p>
+        <p name="loss">0</p>
+        <p name="stars">12.5</p>
+        <p name="percentage">88.4</p>
+    </div>
+</div>

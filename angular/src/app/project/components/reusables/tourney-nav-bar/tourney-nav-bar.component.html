@@ -1,0 +1,29 @@
+<div id="tournamentNavBar" #navbar [ngClass]="{'darkMode': darkMode()}">
+    <div id="navBarBtn" (click)="formatNavBar(navbar, 'expand')">
+        <div class="bar short"></div>
+        <div class="bar"></div>
+        <div class="bar"></div> 
+    </div>
+    <div *ngIf="!navbar.classList.contains('expand')" id="hideNavBar" (click)="formatNavBar(navbar, 'hidden')">
+        <i class='fa-solid fa-chevron-down' *ngIf="!navbar.classList.contains('hidden')"></i>
+        <i class='fa-solid fa-chevron-up' *ngIf="navbar.classList.contains('hidden')"></i>
+    </div>
+    <nav>
+        <div class="link" routerLink="/tournament/calendar">
+            <i class="fa-solid fa-user-group"></i>
+            <p>CALENDARIO</p>
+        </div>
+        <div class="link" routerLink="/tournament/ranking">
+            <i class="fa-solid fa-user-group"></i>
+            <p>CLASIFICACIÓN</p>
+        </div>
+        <div class="link" routerLink="/tournament/teams">
+            <i class="fa-solid fa-user-group"></i>
+            <p>EQUIPOS</p>
+        </div>
+        <div class="link" routerLink="/tournament/myteam">
+            <i class="fa-solid fa-user-group"></i>
+            <p>TU EQUIPO</p>
+        </div>
+    </nav>
+</div>

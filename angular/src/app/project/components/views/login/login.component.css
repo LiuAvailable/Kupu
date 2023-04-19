@@ -1,0 +1,200 @@
+#decorationLogin{position:relative; background: var(--violet);}
+.decoration{position: absolute;}
+.decoration:nth-child(1){ top: -8%; left: -6% }
+.decoration:nth-child(2){ top: 16%; right: 4%;}
+#start
+{
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1rem 0;
+}
+#start > * {z-index: 1;}
+#start > *:not(section) {margin: 0 1.5rem;}
+#start h1{font-size: 70px; font-weight: 700; color:var(--white); margin-bottom: 1rem;}
+#start p{font-size: 16px; color:var(--light-white); margin-bottom: 1.5rem;}
+
+#start .btnLightViolet
+{
+    height: 50px;
+    padding: 0 30px;
+    border-radius: 10px;
+    background: #9E88FF;
+    color: var(--white);
+    border:none;
+    outline: none;
+    box-shadow: 0 0 12px #9E88FF90;
+
+    margin: 1rem 1.5rem;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: .1s;
+}
+#start .btnLightViolet:active{background: #9780ff;}
+#start .btnLightViolet.secundary{border: 2px solid #9E88FF; background: transparent;}
+#start .btnLightViolet.secundary:active{background: #FFFFFF08;}
+
+/*************************/
+
+#login
+{
+    position: relative;
+    margin-top: 2rem;
+    width: 100%;
+    border: 1px solid #FFFFFF40;
+    border-radius: 60px;
+    box-shadow: 0 0 12px #00000020;
+
+    background: #9179F9;
+
+    padding: 1.75rem 2rem 4rem 2rem;
+}
+#login .floating-icon{position: absolute; width: 50px; height: 53px;}
+#login .floating-icon .icon
+{
+    position: relative;
+    width: 50px;
+    height: 53px;
+    background: #9E88FF;
+    border-radius: 10px;
+    border-bottom: 3px solid #7D60FE;
+    z-index: 2;
+}
+#login .floating-icon .shadow
+{
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background: black;
+    bottom: -2px;
+    opacity: .2;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(5px);
+    z-index: 1;
+}
+
+#login .floating-icon:nth-child(1){top: -3.5%; left: 17.5%}
+#login .floating-icon:nth-child(2){top: 4%; left: 2%}
+#login .floating-icon:nth-child(3){top: 40%; left: 3%}
+#login .floating-icon:nth-child(4){top: 30%; right: 2%}
+#login .floating-icon:nth-child(5){top: 44%; right: 6%}
+
+
+
+.advantages
+{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+.advantages h3
+{
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 1rem 0 1.5rem 0;
+}
+.advantages p
+{
+    font-size: 14px;
+    font-weight: 200;
+    color: var(--light-white);
+    text-align: center;
+}
+.advantages p strong{font-weight: 400; font-size: 14px;}
+
+
+p[name='btnsInfo']
+{
+    text-align: center;
+    margin: 2rem 0 0 0 !important;
+    font-size: 14px !important;
+    font-weight: 200;
+}
+.actionBtns
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+.actionBtns::before
+{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 70%;
+    background: #9E88FF;
+}
+#login .actionBtns .btnLightViolet
+{
+    font-size: 14px;
+    padding: 0;
+    margin: 1rem 0;
+    width: 125px;
+    box-shadow: none;
+}
+p[name='register']
+{
+    text-align: center;
+    font-size: 14px !important;
+    font-weight: 200; 
+}
+p[name='register'] strong{font-size: 12px;}
+
+#keepReadig
+{
+    margin: 2rem 0 0 0;
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    justify-content: flex-end;
+}
+#keepReadig p{font-size: 12px; font-weight: 200; margin: 0; line-height: 24px;}
+#keepReadig > div
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#keepReadig i{font-size: 12px; color: var(--moderated-white); opacity: .6; transform: translateY(4px);}
+#keepReadig i:last-child{transform: translateY(-4px);}
+
+/***********************
+      INICIAR SESSION
+************************/
+#loginBox
+{
+    background: var(--moderated-white);
+    background: transparent;
+    border-radius: 15px;
+    width: 90%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 2rem 0;
+
+}
+#loginBox h3{font-size: 14px; color:#f9f9f9;margin-bottom: 4px;}
+#loginBox p{font-size: 12px; font-weight: 400; color: #EEE;}
+
+#loginBox input
+{
+    border: none;
+    outline: none;
+    background: var(--white);
+    box-shadow: 1px 3px 6px #00000020;
+    height: 46px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin: 10px 0;
+}

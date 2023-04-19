@@ -1,0 +1,135 @@
+#back{margin-bottom: 1rem;}
+
+#rankingOptions
+{
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+
+}
+#rankingOptions::before
+{
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 80%;
+    height:1px;
+    left: 50%;
+    transform:  translateX(-50%);
+    bottom: 0;
+    background-image: linear-gradient(90deg, #d1d1d1, #d1d1d1 50%, transparent 50%, transparent 100%);
+    background-size: 14px 14px;
+  }
+
+.rankingOption
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 90px;
+    width: 65px;
+}
+.rankingOption.active > div{box-shadow: 0 0 12px #7557F750;}
+.rankingOption.active > p{color: var(--violet);}
+.rankingOption > div
+{
+    height: 65px;
+    width: 65px;
+    border-radius: 10px;
+    background: var(--white);
+
+    box-shadow: 0 3px 6px #00000010;
+}
+.rankingOption > p
+{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;    
+}
+
+/******************************
+            TABLE
+*******************************/
+.ranking
+{
+    padding:3rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+.ranking .row
+{
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px #00000010;
+    background: var(--white);
+
+    display: flex;
+    align-items: center;
+}
+.ranking .row .position
+{
+    position: relative;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 36px;
+    width: 36px;
+    border-radius: 5px;
+    
+    background: #F6F6F6;
+    border-bottom: 2px solid #E4E4E4;
+    box-shadow: 0 1px 2px #00000010;
+}
+.ranking .row .position::before
+{
+    content: '';
+    position: absolute;
+    top: 2px;
+    width: 90%;
+    height: 6px;
+    border-radius: 30px;
+    background: #FFFFFF60;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ranking .row:nth-child(1) .position {background: #F8CC09; border-bottom: 2px solid #D89700;}
+.ranking .row:nth-child(2) .position {background: #BBC0CF; border-bottom: 2px solid #9FA6B0;}
+.ranking .row:nth-child(3) .position {background: #C78A56; border-bottom: 2px solid #9C704D;}
+
+.ranking .row .position p
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ranking .row > p[name='short_name']{margin-right: 20px; font-weight: 600;}
+.ranking .row > p:not([name='short_name']){width: 46px; text-align: center; position: relative;}
+.ranking .row:first-child > p:not([name='short_name'])::before
+{
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--grey);
+    height: 10px;
+    line-height: 10px;
+}
+
+.ranking .row:first-child > p[name='win']::before{content: 'W';}
+.ranking .row:first-child > p[name='loss']::before{content: 'L';}
+.ranking .row:first-child > p[name='stars']::before{content: '★';}
+.ranking .row:first-child > p[name='percentage']::before{content: '%';}

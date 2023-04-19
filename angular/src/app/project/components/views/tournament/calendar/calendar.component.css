@@ -1,0 +1,119 @@
+#back{margin-bottom: 1rem;}
+
+.btnViolet
+{
+    border: none;
+    outline: none;
+    background: var(--violet);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 120px;
+
+    color: white;
+    font-size: 16px;
+
+    margin: 2rem;
+}
+.btnViolet:active{background: #694EDE;}
+
+#index.jornadas
+{
+    margin: 3rem 0 1rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: .2s;
+}
+#index.jornadas > i:nth-child(1):active{ transform: translateX(-2px); }
+#index.jornadas > i:nth-child(3):active{ transform: translateX(2px); }
+#index.jornadas > h1 { font-size: 18px;}
+
+#jornadasBox
+{
+    position: relative;
+
+    padding: 1rem 0;
+
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+.match
+{
+    position: relative;
+    height: 75px;
+    width: 85%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 3px 6px #00000010;
+
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+
+    overflow: hidden;
+    padding: 0 .75rem;
+}
+.match:first-child{background: #007ACC25; margin-bottom: 1.5rem;}
+
+.team
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 75px;
+    gap: 10px;
+}
+.team:last-child{flex-direction: row-reverse;}
+.team img
+{
+    height: 40px;
+    width: auto;
+}
+.team h1
+{
+    font-size: 18px;
+    font-weight: 400;
+}
+.warInformation
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+}
+.warInformation p[name='date']{font-size: 12px; font-weight: 400;}
+.warInformation p[name='hour']{font-size: 14px; font-weight: 600;}
+.result
+{
+    --result-win:#259644;
+    --result-loss:#E43F31;
+    --result-draw: #007ACC;
+    margin-top: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px
+}
+.result p{font-size: 18px; font-weight: 600; color: var(--violet); position: relative; height: 100%;}
+.result p:nth-child(1)::before,
+.result p:nth-child(3)::before
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 8px;
+    background: var(--violet);
+    bottom: -9px;
+    border-radius: 4px;
+}
+.result p:nth-child(1)::before{background: var(--result-loss);}
+.result p:nth-child(3)::before{background: var(--result-win);}

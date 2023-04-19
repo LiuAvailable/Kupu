@@ -1,0 +1,185 @@
+
+/******************
+    USER ACCOUNTS
+******************/
+#userAccounts
+{
+    overflow: auto;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0 2rem;
+    bottom: 0;
+    transform: translateY(60%);
+
+    display: flex;
+    gap: 10px;
+}
+.account
+{
+    width: 80px;
+    height: 105px;
+    border-radius: 10px;
+    background: var(--super-light-violet);
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.account h1
+{
+    color: var(--moderated-black);
+    font-size: 38px;
+    font-weight: 600;
+}
+.account h3, .account h6
+{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.account h3 { font-size: 14px; font-weight: 400;}
+.account h6 { font-size: 12px; font-weight: 200;}
+
+.account.active
+{
+    background: var(--light-violet);
+    border-top: 1px solid rgba(255,255,255,.2);
+    border-left: 1px solid rgba(255,255,255,.2);
+    box-shadow: 1px 3px 6px #00000010;
+}
+.account.active * { color: var(--light-white)}
+
+.addAccount h1,.addAccount h6 { color: var(--violet); font-weight: 400;}
+.addAccount h1 { font-size: 60px; line-height: 45px;}
+.addAccount h3 { color: transparent;}
+.addAccount h6 { text-align: center;}
+
+
+
+/***************************
+          statistics
+***************************/
+
+/* user identification */
+#statistics
+{
+    position: relative;
+    padding: 0 2rem;
+    margin-top: 6rem;
+}
+
+#statistics #userId
+{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+#statistics #userId img
+{
+    width: 80px;
+    height: auto;
+}
+#statistics #userId div
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--moderated-black);
+}
+#statistics #userId h1 
+{
+    color: var(--moderated-black); 
+    font-size: 26px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 230px;
+}
+#statistics #userId p {color: var(--moderated-black);}
+
+/* statistics */
+/* #cicle_graph_box
+{
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#cicle_graph
+{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background: var(--moderated-black);
+    background: conic-gradient(var(--violet) 0% 65%,
+                               var(--light-black) 65% 88%,
+                               #FFA500 88% 100%            
+                                                    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#inside_circle
+{
+    height: 136px;
+    width: 136px;
+    border-radius: 50%;
+
+    background: var(--white);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#inside_circle h1{font-size: 36px;color: var(--moderated-black);}
+#inside_circle h3{color: var(--moderated-black);}
+#inside_circle h5{color: var(--grey)} */
+
+#statistics_points
+{
+    position: relative;
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+#statistics_points > i 
+{
+    position: absolute;
+    right: 10px;
+    top: -1.75rem;
+    color: var(--violet)
+}
+#statistics_points > i:active{color: #007ACC}
+#statistics_points .column
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#statistics_points .column h1 { color: var(--violet);}
+#statistics_points .column p { color: var(--black); font-weight: 200; font-size: 14px;}
+
+#statistics_points .bars
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+#statistics_points .bars .bar
+{
+    width: 50px;
+    height: 20px;
+    border-radius: 5px;
+    background: var(--super-light-violet);
+}
+#statistics_points .bars .bar.active{background: var(--violet);}
