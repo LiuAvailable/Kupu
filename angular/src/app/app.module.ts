@@ -12,6 +12,7 @@ import { CalendarComponent } from './project/components/views/tournament/calenda
 import { TeamsComponent } from './project/components/views/tournament/teams/teams.component';
 import { TournamentComponent } from './project/components/views/tournament/tournament/tournament.component';
 import { MyTeamComponent } from './project/components/views/tournament/my-team/my-team.component';
+import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MyTeamComponent } from './project/components/views/tournament/my-team/m
     CalendarComponent,
     TeamsComponent,
     TournamentComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    TournamentsComponent
   ],
   imports: [
     BrowserModule,

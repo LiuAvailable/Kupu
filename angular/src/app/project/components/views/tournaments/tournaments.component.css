@@ -1,0 +1,88 @@
+#searcher{margin: 1.75rem auto 0 auto;}
+
+/********************
+        CARD
+********************/
+.card
+{
+    margin: 20px auto;
+    position: relative;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 1px 2px 6px #00000020;
+    background: #FFFFFF;
+    padding: 1rem;
+}
+.card:last-child{margin-bottom: 8rem}
+.card:nth-child(2){margin-top: 60px;}
+.darkMode .card { background: var(--black); }
+.options
+{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.optionsDot
+{
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background: #7557F7;
+}
+.cardId
+{
+    display: flex;
+    gap: 20px;
+}
+.cardId .img
+{
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    background: #00000010;
+}
+.darkMode .cardId .img { background: #FFFFFF10; }
+.cardId .info
+{
+    display: flex;
+    flex-direction: column;
+}
+.cardId .info h1
+{
+    font-size: 22px;
+    font-weight: 600;
+}
+.cardId .info p
+{
+    text-transform: uppercase;
+    font-size: 12px;
+    color:#7557F7;
+    font-weight: 400;
+}
+.darkMode .cardId .info p { color: #EEE; }
+.card .labels
+{
+    display: flex;
+    gap:5px;
+    font-weight: 400;
+}
+.card .labels .label
+{
+    margin: 10px 0;
+    background: #A38FF960;
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-size: 10px;
+}
+.darkMode .card .labels .label {color:#EEE;}
+.card p{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+}

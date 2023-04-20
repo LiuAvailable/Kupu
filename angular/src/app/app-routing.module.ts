@@ -7,17 +7,20 @@ import { RankingComponent } from './project/components/views/tournament/ranking/
 import { TournamentComponent } from './project/components/views/tournament/tournament/tournament.component';
 import { HomeComponent } from './project/components/views/home/home.component';
 import { LoginComponent } from './project/components/views/login/login.component';
+import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+
+  {path: 'tournaments', component: TournamentsComponent},
   { path: 'tournament/teams', component: TeamsComponent },
   { path: 'tournament/myteam', component: MyTeamComponent },
   { path: 'tournament/calendar', component: CalendarComponent },
   { path: 'tournament/ranking', component: RankingComponent },
   { path: 'tournament', component: TournamentComponent },
 
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

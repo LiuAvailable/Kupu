@@ -32,7 +32,6 @@ body
     background: #f9f9f9; 
     overflow-x: hidden;
     width: 100vw;
-    min-height: 100vh;
 }
 .darkMode { background: #7557F7; }
 

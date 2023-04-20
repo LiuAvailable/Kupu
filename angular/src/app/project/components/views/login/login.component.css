@@ -9,7 +9,7 @@
     background: transparent;
     min-height: 100vh;
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem 0 4rem 0;
 }
 #start > * {z-index: 1;}
 #start > *:not(section) {margin: 0 1.5rem;}
@@ -181,9 +181,10 @@ p[name='register'] strong{font-size: 12px;}
     flex-direction: column;
     align-items: center;
 
-    padding: 2rem 0;
+    padding: 2rem 0 0 0 ;
 
 }
+#loginBox.hide{display: none;}
 #loginBox h3{font-size: 14px; color:#f9f9f9;margin-bottom: 4px;}
 #loginBox p{font-size: 12px; font-weight: 400; color: #EEE;}
 
