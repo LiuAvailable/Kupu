@@ -1,0 +1,62 @@
+const conn = require('../mysql');
+
+const getTournaments = async () => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute('select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description FROM tournament t');
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+};
+
+const getTournament = async (id) => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute(`select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description FROM tournament t WHERE id = ?`, [id]);
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+};
+
+const getTournamentTeams = async (id) => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute(`select * from TEAM WHERE tournamentId = ?`, [id]);
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
+const getRankingATK = async (id) => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute(`select * from ATK_RANKING WHERE tournament = ? order by stars DESC, percentage DESC, attaks`, [id]);
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+const getRankingDEF = async (id) => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute(`select * from DEF_RANKING WHERE tournament = ? order by stars, percentage, attaks DESC`, [id]);
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
+module.exports = { getTournaments, getTournament,getTournamentTeams, getRankingATK, getRankingDEF };
