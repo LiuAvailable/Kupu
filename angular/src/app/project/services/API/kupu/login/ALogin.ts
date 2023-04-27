@@ -14,6 +14,7 @@ export class ALogin {
     constructor(private http: HttpClient){}
 
     login(user:string, password:string):Observable<any>{
+        console.log('AAAA')
         return this.http.post(`${this.url}/login`, { user, password });
     }
 }
