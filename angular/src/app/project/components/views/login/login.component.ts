@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ALogin } from 'src/app/project/services/API/kupu/login/ALogin';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent {
     console.log(`name: ${name}`)
     console.log(`password: ${password}`)
     
-    this.Alogin.login(name, password);
+    this.Alogin.login(name, password).subscribe( data => console.log(data));
   }
 
   /**

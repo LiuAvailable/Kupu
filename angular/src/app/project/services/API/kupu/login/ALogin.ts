@@ -13,8 +13,23 @@ export class ALogin {
     url = conf.SERVER.url;
     constructor(private http: HttpClient){}
 
+    requestOptions = this.createHeader();
+
     login(user:string, password:string):Observable<any>{
-        console.log('AAAA')
-        return this.http.post(`${this.url}/login`, { user, password });
+        console.log(this.url);
+        return this.http.post(`${this.url}/login`, { user, password }, this.requestOptions);
+        //return this.http.post(`http://localhost:4000/api/user/login`, { user, password }, this.requestOptions);
     }
+
+    private createHeader(){
+
+        const header = {
+            'Access-Control-Allow-Origin':'*',
+            'Content-Type':'application/json',
+            'Accept':'application/json',
+            'Acces-Control-Allow-Headers':'Origin, Content-Type, Accept,Authorization',
+        }
+        return {headers: new HttpHeaders(header)};
+    }
+
 }
