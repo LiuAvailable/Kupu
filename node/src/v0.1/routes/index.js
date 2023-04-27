@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
+const loginController = require("../../controllers/login/loginController");
 const tournamentController = require("../../controllers/tournaments/tournamentController");
 const userController = require("../../controllers/users/userController");
 
 /* login */
+router.post('/login', loginController.login)
 
 /* tournaments */
 router.get('/tournaments', tournamentController.getTournaments);
