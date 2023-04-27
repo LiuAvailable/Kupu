@@ -20,27 +20,27 @@
         <button class="btnLightViolet">EXPLORAR</button>
     
         <section id="login">
-            <div class="floating-icon">
+            <div class="floating-icon left">
                 <div class="shadow"></div>
                 <div class="icon"></div>
             </div>
-            <div class="floating-icon">
+            <div class="floating-icon left">
                 <div class="shadow"></div>
                 <div class="icon"></div>
             </div>
-            <div class="floating-icon">
+            <div class="floating-icon left">
                 <div class="shadow"></div>
                 <div class="icon"></div>
             </div>
-            <div class="floating-icon">
+            <div class="floating-icon right">
                 <div class="shadow"></div>
                 <div class="icon"></div>
             </div>
-            <div class="floating-icon">
+            <div class="floating-icon right">
                 <div class="shadow"></div>
                 <div class="icon"></div>
             </div>
-            <div class="advantages">
+            <div class="advantages" #advantatges>
                 <h3>¿Que ofrecemos?</h3>
                 <p>Crea <strong>GRATIS</strong> un torneo profesional o compite en 
                     ellos para ascender de liga aparecer entre los mejores
@@ -49,16 +49,30 @@
                 <p>Sigue guerra a guerra todos los resultados
                 de tus competiciones favoritas.</p>
             </div>
-            <div id="loginBox" class="hide">
+            <div id="loginBox" class="hide" #loginBox>
+                <div id="quit" (click)="quitLogin(advantatges, loginBox)"><i class="fa-solid fa-xmark"></i></div>
                 <h3>BIENVENIDO</h3>
                 <P>Te estábamos esperando</P>
-                <input type='text' />
-                <input type='password' />
+                <div class="inputBox">
+                    <p>id / email</p>
+                    <div>
+                        <i class="fa-solid fa-user"></i>
+                        <input type='text' #name/>
+                    </div>
+                </div>
+                <div class="inputBox">
+                    <p>password</p>
+                    <div>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type='password' #password/>
+                    </div>
+                </div>
             </div>
             
-            <p name="btnsInfo">Una cuenta para guardar tus progresos</p>
+            <!--<p name="btnsInfo">Una cuenta permite guardar tus progresos</p>-->
             <div class="actionBtns">
-                <button class="btnLightViolet" routerLink="/home">iniciar sesión</button>
+                <!--<button class="btnLightViolet" routerLink="/home">iniciar sesión</button>-->
+                <button class="btnLightViolet" (click)="this.loginForm(advantatges, loginBox, name.value, password.value)">iniciar sesión</button>
                 <button class="btnLightViolet secundary">anònimo</button>
             </div>
             <p name="register">No tienes cuenta? <strong>REGISTRATE</strong></p>

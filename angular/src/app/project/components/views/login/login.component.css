@@ -51,7 +51,8 @@
 
     padding: 1.75rem 2rem 4rem 2rem;
 }
-#login .floating-icon{position: absolute; width: 50px; height: 53px;}
+#login.overflowHidden{overflow-x: hidden;}
+#login .floating-icon{position: absolute; width: 50px; height: 53px; transition: .5s;}
 #login .floating-icon .icon
 {
     position: relative;
@@ -82,16 +83,25 @@
 #login .floating-icon:nth-child(4){top: 30%; right: 2%}
 #login .floating-icon:nth-child(5){top: 44%; right: 6%}
 
-
+#login .floating-icon.right.hide{ right: -5rem }
+#login .floating-icon.left.hide{ left: -5rem; }
+#login .floating-icon:nth-child(1).left.hide{ left: -3.2rem; }
 
 .advantages
 {
-    width: 80%;
+    width: 72%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    animation: appear 1s;
 }
+.advantages.hide
+{
+    opacity: 0;
+    animation: disappear .5s;
+}
+
 .advantages h3
 {
     color: white;
@@ -171,6 +181,8 @@ p[name='register'] strong{font-size: 12px;}
 ************************/
 #loginBox
 {
+    position: absolute;
+    top: 1rem;
     background: var(--moderated-white);
     background: transparent;
     border-radius: 15px;
@@ -182,12 +194,36 @@ p[name='register'] strong{font-size: 12px;}
     align-items: center;
 
     padding: 2rem 0 0 0 ;
-
+    animation: appear 1s;
 }
+#loginBox.hide
+{
+    display: flex !important;
+    opacity: 0;
+    animation: disappear .5s;
+}
+#quit
+{
+    position: absolute;
+    top: -.25rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    height: 26px;
+    width: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#quit:active { border: 2px solid var(--light-white); }
+#quit i { color: var(--white); font-size: 16px; }
+
 #loginBox.hide{display: none;}
 #loginBox h3{font-size: 14px; color:#f9f9f9;margin-bottom: 4px;}
 #loginBox p{font-size: 12px; font-weight: 400; color: #EEE;}
 
+
+/*
 #loginBox input
 {
     border: none;
@@ -198,4 +234,78 @@ p[name='register'] strong{font-size: 12px;}
     border-radius: 5px;
     padding-left: 10px;
     margin: 10px 0;
+} */
+
+#loginBox .inputBox 
+{
+    position: relative;
+    height: 46px;
+    width: 70%;
+    max-width: 220px;
+    background: var(--white);
+    box-shadow: 1px 3px 6px #00000020;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+#loginBox .inputBox:last-child{margin: 20px 0;}
+#loginBox .inputBox p
+{
+    position: absolute;
+    top: -20px;
+}
+#loginBox .inputBox div
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap:10px;
+}
+#loginBox .inputBox i
+{
+    width: 16%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--violet)
+}
+#loginBox .inputBox input
+{
+    border: none;
+    outline: none;
+    background: none;
+    height: 100%;
+    width: 84%;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--violet)
+}
+
+/******************************
+          ANIMATIONS
+******************************/
+@keyframes appear {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        display: flex;
+        opacity: 1;
+    }
+}
+@keyframes disappear {
+    0%{
+        display: flex;
+        opacity: 1;
+    }
+    100%{
+        display: flex;
+        opacity: 0;
+    }
 }

@@ -13,6 +13,7 @@ import { TeamsComponent } from './project/components/views/tournament/teams/team
 import { TournamentComponent } from './project/components/views/tournament/tournament/tournament.component';
 import { MyTeamComponent } from './project/components/views/tournament/my-team/my-team.component';
 import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TournamentsComponent } from './project/components/views/tournaments/tou
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
