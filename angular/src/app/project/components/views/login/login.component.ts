@@ -19,7 +19,7 @@ export class LoginComponent {
     console.log(`name: ${name}`)
     console.log(`password: ${password}`)
     
-    this.Alogin.login(name, password).subscribe( data => console.log(data));
+    this.Alogin.login(name, password).subscribe( data => console.log("Executat"));
   }
 
   /**

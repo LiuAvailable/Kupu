@@ -1,17 +1,10 @@
 const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-
 const router = express.Router();
 
 const loginController = require("../../controllers/login/loginController");
 const tournamentController = require("../../controllers/tournaments/tournamentController");
 const userController = require("../../controllers/users/userController");
 
-app.use(cors({'origin':'*'}));
-app.use(express.json());
 
 /* login */
 router.post('/login', loginController.login)
