@@ -16,12 +16,9 @@ export class ALogin {
     requestOptions = this.createHeader();
 
     login(user:string, password:string):Observable<any>{
-        console.log({ user, password });
-        const obj= {user,password};
-        const txt = JSON.stringify(obj);
-        console.log(txt);
-        return this.http.post('http://localhost:3000/api/v0.1/login', txt , this.requestOptions);
-        //return this.http.post(`http://localhost:4000/api/user/login`, { user, password }, this.requestOptions);
+        /* const obj= {user,password};
+        const txt = JSON.stringify(obj); */
+        return this.http.post('http://localhost:3000/api/v0.1/login', {user, password} , this.requestOptions);
     }
 
     private createHeader(){

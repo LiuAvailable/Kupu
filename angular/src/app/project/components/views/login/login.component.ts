@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ALogin } from 'src/app/project/services/API/kupu/login/ALogin';
 
 @Component({
@@ -8,7 +9,7 @@ import { ALogin } from 'src/app/project/services/API/kupu/login/ALogin';
 })
 export class LoginComponent {
 
-  constructor(private Alogin:ALogin) { }
+  constructor(private Alogin:ALogin, private route:Router) { }
 
   loginForm(advantatges: HTMLElement, loginBox:HTMLElement, name:string, password:string){
     if(advantatges.classList.contains('hide')) this.login(name, password);
@@ -16,10 +17,22 @@ export class LoginComponent {
   }
 
   login(name:string, password:string){
-    console.log(`name: ${name}`)
-    console.log(`password: ${password}`)
     
-    this.Alogin.login(name, password).subscribe( data => console.log("Executat"));
+    this.Alogin.login(name, password).subscribe( data => {
+        localStorage.setItem('KupuToken', data.token);
+        // this.route.navigate(['home'])
+      },
+      error => {
+        if (error.status === 422) {
+          console.log(error.error.data);
+        } else if(error.status === 404) {
+          console.log(error.error.data);
+        } else {
+          console.error(error);
+        }
+      }
+    
+    );
   }
 
   /**

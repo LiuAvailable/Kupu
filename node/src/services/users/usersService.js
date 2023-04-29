@@ -5,8 +5,8 @@ const getUsers = async () => {
     return tournaments;
 }
 
-const getUser = async (id) => {
-    const user = await usersDatabase.getUser(id);
+const getUser = async (id, password) => {
+    const user = await usersDatabase.getUser(id, password);
     return user;
 }
 

@@ -1,8 +1,15 @@
 const usersService = require('../../services/users/usersService');
 
-const validateTag = (tag) => {
-    const idRegex = /^#[a-zA-Z0-9]{6,19}$/
-    return idRegex.test(tag);
+const validateId = (id) => {
+    const tagRegex = /^#[a-zA-Z0-9]{6,19}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let valid = false;
+    if(tagRegex.test(id) || emailRegex.test(id)){
+        valid = true;
+    }
+    
+    return valid;
 }
 
 const getUsers = async (req, res) => {
@@ -19,7 +26,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
     const id = decodeURIComponent(req.params.id);
 
-    if(validateTag(id)){
+    if(validateId(id)){
         try {
             const user = await usersService.getUser(id);
             if(user.length != 0) res.status(200).json(user)
