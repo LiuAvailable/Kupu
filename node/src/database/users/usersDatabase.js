@@ -78,4 +78,29 @@ const getUserTeams = async (id) => {
     }
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams };
+const getUserStatistics = async (id) => {
+    const connection = await conn.connection();
+    const sql = `  
+    SELECT 
+    u.userId AS user,
+    u.level AS nivel,
+    GROUP_CONCAT(DISTINCT CONCAT('{"name":"', a.name, '", "tag":"', a.tag, '"}') SEPARATOR ',') AS cuentas,
+    u.attacks,
+    u.defences
+    FROM USER_STATISTICS u
+    LEFT JOIN account a ON u.userId = a.userId AND u.level = a.level
+    WHERE u.userId = ?
+    GROUP BY u.userId, u.level;
+  `
+    try {
+        const [rows, fields] = await connection.execute(sql, [id]);
+        return rows;
+    } catch (error) {
+        throw error;
+    } finally {
+        connection.release();
+    }
+
+}
+
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics };

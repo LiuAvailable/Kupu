@@ -21,6 +21,7 @@ router.get('/users', userController.getUsers)
 router.get('/users/:id', userController.getUser)
 router.get('/users/:id/tournaments', userController.getUserTournaments)
 router.get('/users/:id/teams', userController.getUserTeams)
+router.get('/users/:id/statistics', userController.getUserStatistics)
 
 
 

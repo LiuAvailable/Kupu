@@ -8,18 +8,19 @@ import { TournamentComponent } from './project/components/views/tournament/tourn
 import { HomeComponent } from './project/components/views/home/home.component';
 import { LoginComponent } from './project/components/views/login/login.component';
 import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
+import { AuthGuard } from './project/model/implementations/authGuard';
 
-const routes: Routes = [
+const routes: Routes = [ 
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
 
-  {path: 'tournaments', component: TournamentsComponent},
-  { path: 'tournament/teams', component: TeamsComponent },
-  { path: 'tournament/myteam', component: MyTeamComponent },
-  { path: 'tournament/calendar', component: CalendarComponent },
-  { path: 'tournament/ranking', component: RankingComponent },
-  { path: 'tournament', component: TournamentComponent },
+  {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
+  { path: 'tournament/teams', component: TeamsComponent, canActivate: [AuthGuard] },
+  { path: 'tournament/myteam', component: MyTeamComponent, canActivate: [AuthGuard] },
+  { path: 'tournament/calendar', component: CalendarComponent, canActivate: [AuthGuard] },
+  { path: 'tournament/ranking', component: RankingComponent, canActivate: [AuthGuard] },
+  { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
 
 ];
 

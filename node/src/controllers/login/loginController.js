@@ -15,7 +15,7 @@ const login = (async (req, res) => {
                 const user =  await userService.getUser(decodeURIComponent(req.body.user), decodeURIComponent(req.body.password))
                 if(user) {
                     if(!user.error){
-                        const token = jwt.sign(user, 'secret-key', { expiresIn: '1h' });
+                        const token = jwt.sign(user, 'kupu-token');
                         res.status(200).send({token})
                     } else res.status(422).send({data:'Invalid password'})
                 } else res.status(404).send({data:'User does not exist'})

@@ -3,7 +3,13 @@ const conn = require('../mysql');
 const getTournaments = async () => {
   const connection = await conn.connection();
   try {
-    const [rows, fields] = await connection.execute('select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description FROM tournament t');
+    const sql = `select f.type, f.teamSize, f.level, f.timeFormat ,t.id,t.name, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description
+    FROM tournament t
+    left JOIN TOURNAMENT_FORMAT_INTERMIDIATE as i
+    on i.idTournament = t.id
+    left JOIN TOURNAMENT_FORMAT as f
+    on f.id = i.idFormat`
+    const [rows, fields] = await connection.execute(sql);
     return rows;
   } catch (error) {
     throw error;

@@ -25,5 +25,6 @@ export class AppComponent {
     if (rutaActual.includes('tournament/')) {
       this.navBar = 1;
     } else if(!rutaActual.includes('/login'))this.navBar = 2;
+    else this.navBar = 0;
   }
 }

@@ -9,14 +9,18 @@ const conf = require('../conf.json');
 })
 
 
-export class ALogin {
+export class AUsers {
     url = conf.SERVER.url;
     constructor(private http: HttpClient){}
 
     requestOptions = this.createHeader();
 
-    login(user:string, password:string):Observable<any>{
-        return this.http.post('http://localhost:3000/api/v0.1/login', {user, password} , this.requestOptions);
+    statistics(id:string):Observable<any>{
+        return this.http.get(`${this.url}/users/${encodeURIComponent(id)}/statistics`, this.requestOptions);
+    }
+
+    tournaments(id:string):Observable<any>{
+        return this.http.get(`${this.url}/users/${encodeURIComponent(id)}/tournaments`, this.requestOptions);
     }
 
     private createHeader(){

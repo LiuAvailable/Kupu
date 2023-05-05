@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ALogin } from 'src/app/project/services/API/kupu/login/ALogin';
+import { AUsers } from 'src/app/project/services/API/kupu/users/AUsers';
 
+import jwt_decode from 'jwt-decode';
+import { ATournaments } from 'src/app/project/services/API/kupu/tournaments/ATournaments';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,21 +12,37 @@ import { ALogin } from 'src/app/project/services/API/kupu/login/ALogin';
 })
 export class LoginComponent {
 
-  constructor(private Alogin:ALogin, private route:Router) { }
+  constructor(private Alogin:ALogin, private route:Router, private Ausers:AUsers, private ATournaments:ATournaments) { }
 
+  /**
+   * DOM CHANGES + ACTIONS
+   * if login form is active, tries to login. If it is not, it will make it visible
+   */
   loginForm(advantatges: HTMLElement, loginBox:HTMLElement, name:string, password:string){
     if(advantatges.classList.contains('hide')) this.login(name, password);
-    else this.showLoginForm(advantatges, loginBox);
+    else {
+      if(localStorage.getItem('KupuToken')) this.route.navigate(['home'])
+      else this.showLoginForm(advantatges, loginBox);
+    }
   }
 
+  /**
+   * USER LOGIN
+   * @param name 
+   * @param password 
+   */
   login(name:string, password:string){
-    
     this.Alogin.login(name, password).subscribe( data => {
         localStorage.setItem('KupuToken', data.token);
-        // this.route.navigate(['home'])
+        const token:any = jwt_decode(data.token);
+        this.getUserStatistics(token.id)
+        this.getTournaments()
+        this.getUserTournaments(token.id);
+        this.route.navigate(['home'])
       },
       error => {
-        if (error.status === 422) {
+        if (error.status === 422 || error.status === 404) {
+          this.showError(error.error.data);
           console.log(error.error.data);
         } else if(error.status === 404) {
           console.log(error.error.data);
@@ -31,9 +50,14 @@ export class LoginComponent {
           console.error(error);
         }
       }
-    
     );
   }
+
+  showError(error:string) {
+    const errorElement:HTMLElement|null = document.querySelector('.error')
+    if(errorElement) errorElement.textContent = error;
+  }
+
 
   /**
    * DOM CHANGES
@@ -65,5 +89,57 @@ export class LoginComponent {
     })
 
     advantatges.parentElement?.classList.remove('overflowHidden')
+  }
+
+
+
+  /**
+   * API, get user data and save in local storage
+   */
+  getUserStatistics(id:string){
+    this.Ausers.statistics(id).subscribe( data => {
+      localStorage.setItem('KupuUser', JSON.stringify(data));
+    },
+    error => {
+      if (error.status === 422) {
+        console.log(error.error.data);
+      } else if(error.status === 404) {
+        console.log(error.error.data);
+      } else {
+        console.error(error);
+      }
+    }
+  );
+  }
+
+  getUserTournaments(id:string){
+    this.Ausers.tournaments(id).subscribe( data => {
+      localStorage.setItem('KupuUserTournaments', JSON.stringify(data));
+    },
+    error => {
+      if (error.status === 422) {
+        console.log(error.error.data);
+      } else if(error.status === 404) {
+        console.log(error.error.data);
+      } else {
+        console.error(error);
+      }
+    }
+  );
+  }
+  getTournaments(){
+    this.ATournaments.getTournaments().subscribe( data => {
+      localStorage.setItem('KupuTournaments', JSON.stringify(data));
+    },
+    error => {
+      if (error.status === 422) {
+        console.log(error.error.data);
+      } else if(error.status === 404) {
+        console.log(error.error.data);
+      } else {
+        console.error(error);
+      }
+    }
+  );
   }
 }
