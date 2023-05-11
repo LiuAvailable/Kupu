@@ -25,4 +25,9 @@ const getRankingDEF = async (id) => {
     return teams;
 }
 
-module.exports = { getTournaments, getTournament, getTournamentTeams, getRankingATK, getRankingDEF };
+const getTournamentFormat = async (type, teamSize, level) => {
+    const id = await tournamentsDatabase.getTournamentFormat(type, teamSize, level);
+    return id;
+}
+
+module.exports = { getTournaments, getTournament, getTournamentTeams, getRankingATK, getRankingDEF, getTournamentFormat };

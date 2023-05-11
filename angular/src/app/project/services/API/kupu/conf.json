@@ -1,5 +1,5 @@
 {
     "SERVER":{
-        "url":"http://localhost:3000/api/v0.1"
+        "url":"http://172.18.3.194:3000/api/v0.1"
     }
 }

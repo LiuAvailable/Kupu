@@ -15,6 +15,8 @@ router.get('/tournaments/:id', tournamentController.getTournament);
 router.get('/tournaments/:id/teams', tournamentController.getTournamentTeams);
 router.get('/tournaments/:id/ranking', tournamentController.getTournamentATK);
 
+router.get('/tournament_formats', tournamentController.getTournamentsFormats);
+
 
 /* users */
 router.get('/users', userController.getUsers)

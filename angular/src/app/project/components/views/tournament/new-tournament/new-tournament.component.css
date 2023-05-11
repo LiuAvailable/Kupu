@@ -1,0 +1,114 @@
+
+
+section
+{
+    height: 100vh;
+    width: 100vw;
+    background: var(--violet);
+    padding: 2rem;
+    overflow: hidden;
+}
+section h1{color: var(--light-white); font-size: 28px;}
+section p{color: var(--light-white);}
+#back{margin-bottom: 1rem;}
+
+.form
+{
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.form .inputBox
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    height: 36px;
+    background: var(--white);
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px #00000020;
+    transition: .3s;
+}
+.form .inputBox.error::before,
+.form .inputBox.error::after
+{
+    content: '';
+    position: absolute;
+    top:0;
+    height: 100%;
+    width: 4px;
+    background: #ff000080;
+}
+.form .inputBox.error::before
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    left: 0;
+}
+.form .inputBox.error::after
+{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    right: 0;
+}
+.form .row
+{display: flex; flex-direction: row; gap: 30px}
+.form .inputBox p {
+    position: absolute;
+    left: 10px;
+    color: var(--moderated-black);
+    pointer-events: none;
+    transition: .3s;
+    white-space: nowrap;
+}
+.form .inputBox.focus p { transform: translateY(-30px); font-size: 12px; left: 0; color: white}
+.form .inputBox input,
+.form .inputBox select,
+.form .inputBox textarea
+ {
+    border:none;
+    outline: none;
+    min-height: 100%;
+    max-height: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    color: var(--violet);
+    font-weight: 500;
+    background: transparent;
+}
+.form .inputBox:has(textarea) p{top: 9px}
+.form .inputBox:has(textarea) {height: 80px;}
+
+.form .inputBox:has(select) {width: 120px;}
+
+.form .inputBox:has(input[name='name']){width: 220px}
+.form .inputBox:has(input[name='dateStart']){width: 160px}
+.form .inputBox:has(input[type='number']){width: 100px}
+.form .inputBox:has(input[name='privCode']){width: 80px}
+.form .inputBox:has(input[name='privPassword']){width: 80px}
+
+
+.dotsBox
+{
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+}
+.dotsBox .dot
+{
+    height: 12px;
+    width: 12px;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px #00000020;
+    transition: .2s;
+}
+.dotsBox .dot.fill{background: var(--light-white);}

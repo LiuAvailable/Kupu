@@ -10,14 +10,21 @@
 
 
     <section id="start">
-    
+        <div class="languages">
+            <div class="language">
+                <p>ES</p>
+                <input type="radio" name='lang' checked (click)="this.translate()">
+            </div>
+            <div class="language">
+                <p>EN</p>
+                <input type="radio" name='lang' (click)="this.translate()">
+            </div>
+        </div>
     
         <h1>Kupu</h1>
-        <p>No hemos creado nada, solo os hemos juntado.
-            Juntos, el límite del competitivo no lo define el 
-            cielo.</p>
+        <p>{{lang.intro.subtitle}}</p>
     
-        <button class="btnLightViolet">EXPLORAR</button>
+        <button class="btnLightViolet">{{lang.intro.top_button}}</button>
     
         <section id="login">
             <div class="floating-icon left">
@@ -41,18 +48,15 @@
                 <div class="icon"></div>
             </div>
             <div class="advantages" #advantatges>
-                <h3>¿Que ofrecemos?</h3>
-                <p>Crea <strong>GRATIS</strong> un torneo profesional o compite en 
-                    ellos para ascender de liga aparecer entre los mejores
-                    jugadores de clash.</p>
+                <h3>{{lang.advantatges.title}}</h3>
+                <p>{{lang.advantatges.text1}}</p>
                      
-                <p>Sigue guerra a guerra todos los resultados
-                de tus competiciones favoritas.</p>
+                <p>{{lang.advantatges.text2}}</p>
             </div>
             <div id="loginBox" class="hide" #loginBox>
                 <div id="quit" (click)="quitLogin(advantatges, loginBox)"><i class="fa-solid fa-xmark"></i></div>
-                <h3>BIENVENIDO</h3>
-                <P>Te estábamos esperando</P>
+                <h3>{{lang.login.header}}</h3>
+                <P>{{lang.login.subtitle}}</P>
                 <div class="inputBox">
                     <p>id / email</p>
                     <div>
@@ -73,12 +77,12 @@
             <!--<p name="btnsInfo">Una cuenta permite guardar tus progresos</p>-->
             <div class="actionBtns">
                 <!--<button class="btnLightViolet" routerLink="/home">iniciar sesión</button>-->
-                <button class="btnLightViolet" (click)="this.loginForm(advantatges, loginBox, name.value, password.value)">iniciar sesión</button>
-                <button class="btnLightViolet secundary">anònimo</button>
+                <button class="btnLightViolet" (click)="this.loginForm(advantatges, loginBox, name.value, password.value)">{{lang.login.login}}</button>
+                <button class="btnLightViolet secundary">{{lang.login.anonymous}}</button>
             </div>
-            <p name="register">No tienes cuenta? <strong>REGISTRATE</strong></p>
+            <p name="register">{{lang.login.register_text}} <strong>{{lang.login.register}}</strong></p>
             <div id="keepReadig">
-                <p>seguir leyendo</p>
+                <p>{{lang.keep_reading}}</p>
                 <div>
                     <i class="fa-solid fa-chevron-down"></i>
                     <i class="fa-solid fa-chevron-down"></i>

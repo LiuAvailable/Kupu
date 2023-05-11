@@ -72,6 +72,7 @@ const getRankingATK = async (id, res) => {
         res.status(500).send('Server Error')
     }
 }
+
 const getRankingDEF = async (id, res) => {
     try{
         const players = await  tournamentService.getRankingDEF(id)
@@ -83,4 +84,16 @@ const getRankingDEF = async (id, res) => {
     }
 }
 
-module.exports = { getTournaments, getTournament, getTournamentTeams, getTournamentATK };
+const getTournamentsFormats = async (req, res) => {
+    const type = req.body.type;
+    const teamSize = req.body.teamSize;
+    const level = req.body.level
+    if(type && teamSize && level){
+        const id = await tournamentService.getTournamentFormat(type, teamSize,level);
+        if(id) res.status(200).send(id[0])
+        else res.status(404).send({data:'format not found'})
+    } else res.status(422).send({data:'empty parameters'})
+
+}
+
+module.exports = { getTournaments, getTournament, getTournamentTeams, getTournamentATK, getTournamentsFormats};

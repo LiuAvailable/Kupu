@@ -1,0 +1,24 @@
+[
+    {
+        "page":"login",
+        "keep_reading":"read more",
+        "intro":{
+            "title":"Kupu",
+            "subtitle":"We haven't created anything, we've just brought you together. Together, the limit of competitiveness is not defined by the sky.",
+            "top_button":"explore"
+        },
+        "advantatges":{
+            "title":"WHAT DO WE OFFER?",
+            "text1":"Create a professional tournament for FREE or compete in them to get the highest league and become one of the best Clash players.",
+            "text2":"Follow all the results of your favorite competitions, war after war."
+        },
+        "login":{
+            "header":"Welcome",
+            "subtitle":"We've been waiting for you",
+            "login":"LOG IN",
+            "anonymous":"ANONYMOUS",
+            "register_text":"Don't have an account?",
+            "register":"REGISTER"
+        }
+    }
+]

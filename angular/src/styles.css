@@ -63,6 +63,34 @@ h1,h2,h3,h4,h5,h6,p,i{color:var(--moderated-black)}
     height: auto;
 }
 
+.btn-next
+{
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    height: 40px;
+    width: 140px;
+
+    border: none;
+    background: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #FF69B495;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+}
+.btn-next:active{background-color: #FF69B475;}
+.btn-next.secundary
+{
+    border: 2px solid #EEEEEE50;
+    color: #EEEEEE99;
+    background-color: var(--violet);
+    left: 2rem;
+}
+.btn-next.secundary:active{background-color: #EEEEEE10;}
 
 /* go back arrow */
 #back

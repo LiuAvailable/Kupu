@@ -65,4 +65,16 @@ const getRankingDEF = async (id) => {
   }
 }
 
-module.exports = { getTournaments, getTournament,getTournamentTeams, getRankingATK, getRankingDEF };
+const getTournamentFormat = async (type, teamSize, level) => {
+  const connection = await conn.connection();
+  try {
+    const [rows, fields] = await connection.execute(`select id from TOURNAMENT_FORMAT WHERE type = ? and teamSize = ? and level = ?`, [type, teamSize, level]);
+    return rows;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
+module.exports = { getTournaments, getTournament,getTournamentTeams, getRankingATK, getRankingDEF,getTournamentFormat };

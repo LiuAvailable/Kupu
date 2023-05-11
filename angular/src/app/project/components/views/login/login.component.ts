@@ -5,14 +5,44 @@ import { AUsers } from 'src/app/project/services/API/kupu/users/AUsers';
 
 import jwt_decode from 'jwt-decode';
 import { ATournaments } from 'src/app/project/services/API/kupu/tournaments/ATournaments';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
 
-  constructor(private Alogin:ALogin, private route:Router, private Ausers:AUsers, private ATournaments:ATournaments) { }
+
+
+export class LoginComponent {
+  lang_ES:any;
+  lang_EN:any;
+  lang:any;
+
+  constructor(private Alogin:ALogin, private route:Router, private Ausers:AUsers, private ATournaments:ATournaments, private http:HttpClient) { 
+    this.http.get<Array<any>>('/assets/languages/en.json').subscribe(data => {
+      const loginObject = data.find(obj => obj.page === 'login');
+      this.lang_EN = loginObject;
+    });
+    this.http.get<Array<any>>('/assets/languages/es.json').subscribe(data => {
+      const loginObject = data.find(obj => obj.page === 'login');
+      this.lang_ES = loginObject;
+      this.lang = loginObject;
+    });
+  }
+
+
+  translate(){
+    const language = document.querySelector('.language:has(input:checked) p')?.textContent;
+    switch (language){
+      case 'EN':
+        this.lang = this.lang_EN
+        break;
+      default:
+        this.lang = this.lang_ES
+        break;
+    }
+  }
 
   /**
    * DOM CHANGES + ACTIONS

@@ -1,0 +1,74 @@
+<section>
+    <div id="back" routerLink="/tournaments">
+        <i class="fa-solid fa-arrow-left"></i>
+    </div>
+    <h1>Organiza tu torneo</h1>
+    <p>Rellena los siguientes campos para crear tu torneo</p>
+
+
+    <div class="form first" *ngIf="creationIndex==1">
+        <div class="inputBox" #nameBox>
+            <p name="error"></p>
+            <p>Nombre del torneo</p>
+            <input type="text" name="name" #nameInput (focus)="nameBox.classList.add('focus')" (blur)="nameInput.value ? '' : nameBox.classList.remove('focus')"/>
+        </div>
+        <div class="inputBox" #descBox>
+            <p name="error"></p>
+            <p>Descripción</p>
+            <textarea type="text" name="name" #descInput (focus)="descBox.classList.add('focus')" (blur)="descInput.value ? '' : descBox.classList.remove('focus')"></textarea>
+        </div>
+        <div class="inputBox focus">
+            <p name="error"></p>
+            <p>Inicio</p>
+            <input type="date" name="dateStart"/>
+        </div>
+        <div class="row">
+            <div class="inputBox focus">
+                <p name="error"></p>
+                <p>Nº Equipos</p>
+                <input type="number" name="teams"/>
+            </div>
+            <div class="inputBox focus">
+                <p name="error"></p>
+                <p>Inscripciones / Equipo</p>
+                <input type="number" name="num_players"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="inputBox focus">
+                <p name="error"></p>
+                <p>Estado</p>
+                <select #selectState (change)="setState(selectState)">
+                    <option>Publico</option>
+                    <option>Privado</option>
+                </select>
+            </div>
+            <div class="row" *ngIf="statePriv">
+                <div class="inputBox focus">
+                    <p name="error"></p>
+                    <p>Código</p>
+                    <input type="text" name="privCode"/>
+                </div>
+                <div class="inputBox focus">    
+                    <p name="error"></p>
+                    <p>Contraseña</p>
+                    <input type="text" name="privPassword"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dotsBox">
+        <div [ngClass]="creationIndex==1 ? 'dot fill': 'dot'"></div>
+        <div [ngClass]="creationIndex==2 ? 'dot fill': 'dot'"></div>
+        <div [ngClass]="creationIndex==3 ? 'dot fill': 'dot'"></div>
+        <div [ngClass]="creationIndex==4 ? 'dot fill': 'dot'"></div>
+    </div>
+
+    <button class="btn-next secundary" *ngIf="creationIndex>1" (click)="substract()">atras</button>
+    <button class="btn-next" *ngIf="creationIndex<4" (click)="check()">siguiente</button>
+    <button class="btn-next" *ngIf="creationIndex==4">terminar</button>
+
+
+
+</section>

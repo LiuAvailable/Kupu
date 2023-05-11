@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tournament } from 'src/app/project/model/implementations/kupu/Tournament';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tournaments',
@@ -7,16 +7,19 @@ import { Tournament } from 'src/app/project/model/implementations/kupu/Tournamen
   styleUrls: ['./tournaments.component.css']
 })
 export class TournamentsComponent implements OnInit {
-  tournaments:Array<Tournament> = [];
-  constructor() { }
+  tournaments:Array<any> = [];
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     const tournaments = localStorage.getItem('KupuTournaments');
     if(tournaments) {
-      JSON.parse(tournaments).forEach((t: any) => this.tournaments.push(new Tournament(t.id, t.name, t.description)))
+      JSON.parse(tournaments).forEach((t: any) => this.tournaments.push({id:t.id, name:t.name, description:t.description}));
     }
 
     console.log(this.tournaments)
+  }
+  createTournament(){
+    this.router.navigate(['tournaments/create']);
   }
 
 }

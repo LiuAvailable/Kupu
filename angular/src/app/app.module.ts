@@ -14,6 +14,7 @@ import { TournamentComponent } from './project/components/views/tournament/tourn
 import { MyTeamComponent } from './project/components/views/tournament/my-team/my-team.component';
 import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NewTournamentComponent } from './project/components/views/tournament/new-tournament/new-tournament.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     TeamsComponent,
     TournamentComponent,
     MyTeamComponent,
-    TournamentsComponent
+    TournamentsComponent,
+    NewTournamentComponent
   ],
   imports: [
     BrowserModule,
