@@ -10,6 +10,8 @@ import { LoginComponent } from './project/components/views/login/login.component
 import { TournamentsComponent } from './project/components/views/tournaments/tournaments.component';
 import { AuthGuard } from './project/model/implementations/authGuard';
 import { NewTournamentComponent } from './project/components/views/tournament/new-tournament/new-tournament.component';
+import { ChatComponent } from './project/components/views/chat_components/chat/chat.component';
+import { ChatsComponent } from './project/components/views/chat_components/chats/chats.component';
 
 const routes: Routes = [ 
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
   { path: 'tournaments/create', component: NewTournamentComponent},
+  { path: 'chats/:chat', component: ChatComponent},
+  { path: 'chats', component: ChatsComponent},
 
 
   { path: 'tournament/teams', component: TeamsComponent, canActivate: [AuthGuard] },

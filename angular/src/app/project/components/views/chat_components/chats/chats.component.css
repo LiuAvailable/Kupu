@@ -1,0 +1,33 @@
+#searcher{ margin: 1.4rem auto 0 auto; }
+
+.chats
+{
+    display: flex;
+    flex-direction: column;
+}
+.chat
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #00000010;
+    height: 70px;
+    padding: 0 2rem;
+}
+.chat:first-child{ border-top: 1px solid #00000010; margin-top: 2rem;}
+.chat:hover{background: #00000005;}
+.chat:active{background: #00000008;}
+
+.chat .img 
+{ 
+    height: 50px; 
+    width: 50px;
+    background: #00000020;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.chat h1
+{
+    font-weight: 500;
+    font-size: 18px;
+}
