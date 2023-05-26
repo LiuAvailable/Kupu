@@ -147,6 +147,84 @@ h1,h2,h3,h4,h5,h6,p,i{color:var(--moderated-black)}
 }
 #searcher input::placeholder{color: var(--light-grey)}
 
+/* dropdown card*/
+.dopdrown-card
+{
+    position: relative;
+    width: 100%;
+    border-bottom: 4px solid #C661D0;
+    height: 60px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0 1rem;
+    overflow: hidden;
+    background: rgba(0,0,0,0.05);
+    transition: .3s;
+}
+.dopdrown-card.active
+{
+    height: 200px;
+}
+.dopdrown-card .visible-part
+{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dopdrown-card .visible-part h1
+{
+    font-size: 16px;
+    color: var(--light-white);
+    font-weight: 500;
+    pointer-events: none;
+}
+.dopdrown-card .visible-part select
+{
+    position: relative;
+    outline: none;
+    border: none;
+    height: 32px;
+    width: 120px;
+    padding: 0 6px;
+    border-radius: 5px;
+    background: #C661D060;
+    color: var(--white);
+    z-index: 5;
+    pointer-events: all;
+}
+.dates 
+{
+    display: flex;
+    padding: 2rem 0 1rem 0;
+    justify-content: space-between;
+}
+.dates .inputBox 
+{ 
+    width: 135px;
+}
+
+.dopdrown-card .row
+{
+    gap: 10px;
+    align-items: center;
+}
+.dopdrown-card .row p{color: white; font-size: 12px;}
+.dopdrown-card .row input
+{
+    height: 36px;
+    outline: none;
+    background: white;
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    padding: 0 10px;
+    font-size: 16px;
+    color: var(--violet);
+    text-align: center;
+}
+
 /************************************
                HEADER
 ************************************/
@@ -190,4 +268,70 @@ header p
 /* darkMode header */
 .darkMode header{ background: var(--moderated-black);}
 .darkMode h1,.darkMode p { color: var(--light-white); }
+
+
+/*****************************
+       CREATE TOURNAMENT
+******************************/
+#createTournament .form .inputBox
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    height: 36px;
+    background: var(--white);
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px #00000020;
+    transition: .3s;
+}
+#createTournament .form .inputBox.error::before,
+#createTournament .form .inputBox.error::after
+{
+    content: '';
+    position: absolute;
+    top:0;
+    height: 100%;
+    width: 4px;
+    background: #ff000080;
+}
+#createTournament .form .inputBox.error::before
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    left: 0;
+}
+#createTournament .form .inputBox.error::after
+{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    right: 0;
+}
+#createTournament .form .row
+{display: flex; flex-direction: row; gap: 30px}
+#createTournament .form .inputBox p {
+    position: absolute;
+    left: 10px;
+    color: var(--moderated-black);
+    pointer-events: none;
+    transition: .3s;
+    white-space: nowrap;
+}
+#createTournament .form .inputBox.focus p { transform: translateY(-30px); font-size: 12px; left: 0; color: white}
+#createTournament .form .inputBox input,
+#createTournament .form .inputBox select,
+#createTournament .form .inputBox textarea
+ {
+    border:none;
+    outline: none;
+    min-height: 100%;
+    max-height: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    color: var(--violet);
+    font-weight: 500;
+    background: transparent;
+}
 

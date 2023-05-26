@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-tourney-nav-bar',
@@ -7,9 +6,8 @@ import { Route } from '@angular/router';
   styleUrls: ['./tourney-nav-bar.component.css']
 })
 export class TourneyNavBarComponent {
-
-  constructor() { 
-  }
+  currentId!:string;
+  constructor() { }
 
   darkMode():boolean {
     let bool = false;

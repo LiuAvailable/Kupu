@@ -30,4 +30,29 @@ const getTournamentFormat = async (type, teamSize, level) => {
     return id;
 }
 
-module.exports = { getTournaments, getTournament, getTournamentTeams, getRankingATK, getRankingDEF, getTournamentFormat };
+const newTournament = async (tournament) => {
+    const id = await tournamentsDatabase.newTournament(tournament);
+    return id;
+}
+
+const setTournamentFases = async (fase) => {
+    const status = tournamentsDatabase.setTournamentFases(fase);
+    return status;
+}
+
+const newTeam = async (team) => {
+    const result = await tournamentsDatabase.newTeam(team);
+    return result
+}
+
+module.exports = { 
+    getTournaments, 
+    getTournament, 
+    getTournamentTeams, 
+    getRankingATK, 
+    getRankingDEF, 
+    getTournamentFormat, 
+    newTournament, 
+    setTournamentFases, 
+    newTeam
+};

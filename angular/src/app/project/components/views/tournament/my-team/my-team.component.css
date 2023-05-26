@@ -184,3 +184,79 @@
 {
     height: var(--height);
 }
+
+
+/********************
+     INSCRIVIRSE
+********************/
+#inscribe-team
+{
+    position: relative;
+    padding: 2rem;
+}
+#inscribe-team p:nth-child(2){margin-bottom: 1rem;}
+#inscribe-team input
+{
+    border:none;
+    outline:none;
+    border-radius: 5px;
+    height: 40px;
+    box-shadow: 0 2px 4px #00000010;
+    padding: 0 10px;
+    margin: 4px 0;
+}
+input[name='nombre-torneo']{width: 220px;}
+input[name='abv-torneo']{width: 95px; margin-left: 4px !important;}
+
+#inscribe-team .playersBox
+{
+    margin: 2rem 0;
+}
+#inscribe-team .playersBox p { font-size: 14px; color: var(--grey); margin-bottom: 1rem;}
+
+#inscribe-team .playersBox .player
+{
+    height: 40px;
+    background: white;
+    box-shadow: 0 2px 4px #00000020;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    width: 280px;
+    margin: .5rem 0;
+}
+#inscribe-team .playersBox .player .number
+{
+    height: 26px;
+    width: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--grey);
+
+    font-size: 16px;
+    font-weight: 500;
+}
+#inscribe-team .playersBox .player input
+{
+    background: none;
+    box-shadow: unset;
+
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+}
+#inscribe-team button
+{
+    border:none;
+    outline: none;
+
+    height: 40px;
+    padding: 0 20px;
+    background: var(--violet);
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+}
+#inscribe-team button:active{background: #694EDE;}

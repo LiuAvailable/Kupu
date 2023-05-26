@@ -57,7 +57,7 @@ const getUser = async (id, password) => {
 const getUserTournaments = async (id) => {
     const connection = await conn.connection();
     try {
-        const [rows, fields] = await connection.execute('select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description from TEAM_PLAYER p JOIN TOURNAMENT t ON p.tournament = t.id WHERE p.tag = ?', [id]);
+        const [rows, fields] = await connection.execute('select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description from TEAM_PLAYER2 p JOIN TOURNAMENT t ON p.tournament = t.id WHERE p.tag = ?', [id]);
         return rows;
     } catch (error) {
         throw error;
@@ -69,7 +69,7 @@ const getUserTournaments = async (id) => {
 const getUserTeams = async (id) => {
     const connection = await conn.connection();
     try {
-        const [rows, fields] = await connection.execute('select t.* from TEAM_PLAYER p JOIN TEAM t ON p.team = t.id where p.tag = ?', [id]);
+        const [rows, fields] = await connection.execute('select t.* from TEAM_PLAYER2 p JOIN TEAM t ON p.team = t.id where p.tag = ?', [id]);
         return rows;
     } catch (error) {
         throw error;
@@ -103,4 +103,17 @@ const getUserStatistics = async (id) => {
 
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics };
+const getTournamentTeam = async (user, tournament) => {
+    const connection = await conn.connection();
+    const sql = 'SELECT * FROM team_player2 WHERE tag = ? and tournament = ?';
+    try {
+        const [rows, fields] = await connection.execute(sql, [user, tournament]);
+        return rows;
+    } catch (error) {
+        throw error;
+    } finally {
+        connection.release();
+    }
+}
+
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics,getTournamentTeam };

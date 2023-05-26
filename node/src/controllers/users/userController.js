@@ -93,4 +93,23 @@ const getUserStatistics = async (req, res) => {
     } else res.status(422).send({data:'User Id is not valid'});
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics };
+const getTournamentTeam = async (req, res) => {
+    const user = decodeURIComponent(req.params.user);
+    const tournament = decodeURIComponent(req.params.tournament);
+
+    if(user && tournament){
+        try{
+            const team = await usersService.getTournamentTeam(user, tournament);
+            if(team && team.length > 0){
+                console.log(team)
+                res.status(200).send(team);
+            } else res.status(404).send({data:'No team found'})
+        } catch(e){
+            console.log(e);
+            res.status(500).send({data:'Internal error'})
+        }
+    }else res.status(422).send({data:'Params are required'});
+
+}
+
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam };

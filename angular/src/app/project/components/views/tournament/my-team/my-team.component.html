@@ -7,7 +7,7 @@
 
 </header>
 
-<section id="teamData">
+<section id="teamData" *ngIf="this.team">
     <div>
         <img src="/assets/lleida.png" />
         <div>
@@ -19,7 +19,7 @@
     <p>Jugadores: <strong>5/10</strong></p>
 </section>
 
-<section id="playersBox">
+<section id="playersBox" *ngIf="this.team">
     <h1>Rooster</h1>
     <div id="actions">
         <div class="btnVisibilityType active" (click)="changeRooster(statistics, user, 'statistics')" #statistics></div>
@@ -90,5 +90,23 @@
             <p>88.7</p>
         </div>
     </div>
+</section>
+
+<section id="inscribe-team" *ngIf="!this.team">
+    <h1>Inscribete</h1>
+    <p>Informacion del clan</p>
+
+    <input type="text" placeholder="Nombre del torneo" name="nombre-torneo" #name/>
+    <input type="text" maxlength="3" placeholder="Abreviación" name="abv-torneo" #abrev/>
+    <input type="text" placeholder="Clan tag" name="clan-tag" #teamTag/>
+
+    <div class="playersBox" #playersBox>
+        <p>Jugadores</p>
+        <div class="player" *ngFor="let num of [1,2,3,4,5]">
+            <div class="number">{{num}}</div>
+            <input type="text" name="player" placeholder="#"/>
+        </div>
+    </div>
+    <button (click)="inscribe(name, abrev, teamTag, playersBox)">INSCRIBIRME</button>
 </section>
 <div class="spacer" style="--height: .2rem"></div>

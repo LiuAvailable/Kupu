@@ -67,7 +67,7 @@ export class LoginComponent {
         const token:any = jwt_decode(data.token);
         this.getUserStatistics(token.id)
         this.getTournaments()
-        this.getUserTournaments(token.id);
+        // this.getUserTournaments(token.id);
         this.route.navigate(['home'])
       },
       error => {
@@ -169,7 +169,6 @@ export class LoginComponent {
       } else {
         console.error(error);
       }
-    }
-  );
+    });
   }
 }

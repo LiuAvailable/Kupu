@@ -1,4 +1,4 @@
-<section>
+<section id="createTournament">
     <div id="back" routerLink="/tournaments">
         <i class="fa-solid fa-arrow-left"></i>
     </div>
@@ -10,28 +10,23 @@
         <div class="inputBox" #nameBox>
             <p name="error"></p>
             <p>Nombre del torneo</p>
-            <input type="text" name="name" #nameInput (focus)="nameBox.classList.add('focus')" (blur)="nameInput.value ? '' : nameBox.classList.remove('focus')"/>
+            <input type="text" name="name" #nameInput (focus)="nameBox.classList.add('focus'); nameBox.classList.remove('error')" (blur)="nameInput.value ? '' : nameBox.classList.remove('focus')"/>
         </div>
         <div class="inputBox" #descBox>
             <p name="error"></p>
             <p>Descripción</p>
-            <textarea type="text" name="name" #descInput (focus)="descBox.classList.add('focus')" (blur)="descInput.value ? '' : descBox.classList.remove('focus')"></textarea>
-        </div>
-        <div class="inputBox focus">
-            <p name="error"></p>
-            <p>Inicio</p>
-            <input type="date" name="dateStart"/>
+            <textarea type="text" name="name" #descInput (focus)="descBox.classList.add('focus'); descBox.classList.remove('error')" (blur)="descInput.value ? '' : descBox.classList.remove('focus')"></textarea>
         </div>
         <div class="row">
-            <div class="inputBox focus">
-                <p name="error"></p>
-                <p>Nº Equipos</p>
-                <input type="number" name="teams"/>
-            </div>
-            <div class="inputBox focus">
+            <div class="inputBox focus" #insBox>
                 <p name="error"></p>
                 <p>Inscripciones / Equipo</p>
-                <input type="number" name="num_players"/>
+                <input type="number" name="numPlayers_team" (focus)="insBox.classList.remove('error')"/>
+            </div>
+            <div class="inputBox focus" #formBox>
+                <p name="error"></p>
+                <p>Formato de la guerra</p>
+                <input type="text" name="time_format" placeholder="15min x 1hora" (focus)="formBox.classList.remove('error')"/>
             </div>
         </div>
         <div class="row">
@@ -44,31 +39,57 @@
                 </select>
             </div>
             <div class="row" *ngIf="statePriv">
-                <div class="inputBox focus">
+                <div class="inputBox focus" #codigoBox>
                     <p name="error"></p>
                     <p>Código</p>
-                    <input type="text" name="privCode"/>
+                    <input type="text" name="privCode" (focus)="codigoBox.classList.remove('error')"/>
                 </div>
-                <div class="inputBox focus">    
+                <div class="inputBox focus" #passBox>    
                     <p name="error"></p>
                     <p>Contraseña</p>
-                    <input type="text" name="privPassword"/>
+                    <input type="text" name="privPassword" (focus)="passBox.classList.remove('error')"/>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="form second" *ngIf="creationIndex==2">
+        <div id="fases">
+            <div class="dopdrown-card active" #dropdown_card_1>
+                <div class="visible-part" (click)="this.dropdownAction(dropdown_card_1)">
+                    <h1>Fase 1</h1>
+                    <select (click)="$event.stopPropagation()">
+                        <option>Liga</option>
+                        <option>Eliminatoria</option>
+                    </select>
+                </div>
+                <div class="dates">
+                    <div class="inputBox focus">
+                        <p>Inicio</p>
+                        <input type="date"/>
+                    </div>
+                    <div class="inputBox focus">
+                        <p>Fin</p>
+                        <input type="date"/>
+                    </div>
+                </div>
+                <div class="row"><p>Nº Equipos</p><input type="number"/></div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="delete" *ngIf="this.fase > 2" (click)="this.eliminarFase()">eliminar fase</button>
+            <button class="create" *ngIf="this.fase < 3" (click)="this.agregarElementoHijo()">Nueva fase</button>
+        </div>
+
     </div>
 
     <div class="dotsBox">
         <div [ngClass]="creationIndex==1 ? 'dot fill': 'dot'"></div>
         <div [ngClass]="creationIndex==2 ? 'dot fill': 'dot'"></div>
-        <div [ngClass]="creationIndex==3 ? 'dot fill': 'dot'"></div>
-        <div [ngClass]="creationIndex==4 ? 'dot fill': 'dot'"></div>
+        <!--<div [ngClass]="creationIndex==3 ? 'dot fill': 'dot'"></div>-->
     </div>
 
-    <button class="btn-next secundary" *ngIf="creationIndex>1" (click)="substract()">atras</button>
-    <button class="btn-next" *ngIf="creationIndex<4" (click)="check()">siguiente</button>
-    <button class="btn-next" *ngIf="creationIndex==4">terminar</button>
-
-
+    <button class="btn-next secundary" *ngIf="creationIndex>1" (click)="checkSubstract()">atras</button>
+    <button class="btn-next" *ngIf="creationIndex<2" (click)="checkSum()">siguiente</button>
+    <button class="btn-next" *ngIf="creationIndex==2"  (click)="checkSum()">terminar</button>
 
 </section>

@@ -23,6 +23,11 @@ const getUserTeams = async (id) => {
 const getUserStatistics = async (id) => {
     const user = await usersDatabase.getUserStatistics(id);
     return user;
-}   
+}
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics };
+const getTournamentTeam = async (user, tournament) => {
+    const team = await usersDatabase.getTournamentTeam(user, tournament);
+    return team;
+}
+
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam };

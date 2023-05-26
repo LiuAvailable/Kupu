@@ -3,12 +3,13 @@ const conn = require('../mysql');
 const getTournaments = async () => {
   const connection = await conn.connection();
   try {
-    const sql = `select f.type, f.teamSize, f.level, f.timeFormat ,t.id,t.name, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description
+    const sql_bk = `select f.type, f.teamSize, f.level, f.timeFormat ,t.id,t.name, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description
     FROM tournament t
     left JOIN TOURNAMENT_FORMAT_INTERMIDIATE as i
     on i.idTournament = t.id
     left JOIN TOURNAMENT_FORMAT as f
     on f.id = i.idFormat`
+    const sql = `SELECT	id, name, description, normativa, logo, numPlayers_team, time_format, finish from tournament`
     const [rows, fields] = await connection.execute(sql);
     return rows;
   } catch (error) {
@@ -21,7 +22,7 @@ const getTournaments = async () => {
 const getTournament = async (id) => {
   const connection = await conn.connection();
   try {
-    const [rows, fields] = await connection.execute(`select t.id, t.tournament_date, t.normativa, t.match_time, t.number_teams, t.start, t.rooster_change, t.rooster_change_start, t.rooster_change_end, t.numPlayers_team, t.description FROM tournament t WHERE id = ?`, [id]);
+    const [rows, fields] = await connection.execute(`SELECT	id, name, description, normativa, logo, numPlayers_team, time_format, finish from tournament tournament WHERE id = ?`, [id]);
     return rows;
   } catch (error) {
     throw error;
@@ -77,4 +78,71 @@ const getTournamentFormat = async (type, teamSize, level) => {
   }
 }
 
-module.exports = { getTournaments, getTournament,getTournamentTeams, getRankingATK, getRankingDEF,getTournamentFormat };
+
+const newTournament = async (tournament) => {
+  const connection = await conn.connection();
+  const sql = `INSERT INTO TOURNAMENT(id, name, description, normativa, logo, numPlayers_team, time_format, finish, state, codi, password) 
+  values (?, ?, ?, '', '', ?, ?, ?, 'public', '', '');`
+  const selectSql = 'SELECT id FROM TOURNAMENT WHERE id = LAST_INSERT_ID();';
+  try {
+    // Insertar el registro en la base de datos
+    await connection.execute(sql, [tournament.id, tournament.name, tournament.descripcio, tournament.numPlayers_team, tournament.time_format, tournament.fi]);
+    
+    // Obtener el UUID del registro insertado
+    const [rows, fields] = await connection.execute(selectSql);
+    const id = rows[0].id;
+    
+    return id;
+  } catch (error) {
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+const setTournamentFases = async (fase) => {
+  const connection = await conn.connection();
+  const sql = `INSERT INTO TOURNAMENT_FORMAT(id, start, finish, number_teams, fase, format) 
+  values (?,?,?,?,?,?);`
+  try {
+    // Insertar el registro en la base de datos
+    await connection.execute(sql, [fase.id, fase.inici, fase.fi, fase.equipos, fase.fase, fase.type]);
+    return true;
+  } catch (error) {
+    console.error("Error al insertar el registro:", error);
+    return false;
+  } finally {
+    connection.release();
+  }
+}
+
+const newTeam = async (team) => {
+  const connection = await conn.connection();
+  const sql = `INSERT INTO TEAM(id, tournamentId, tag, name, short_name, state) 
+  values (?,?,?,?,?,'active');`
+  const sql_players = `INSERT INTO team_player2(tag, player, tournament, team) VALUES (?,?,?,?)`
+  try {
+    // Insertar el registro en la base de datos name, abrev, playerList, teamId, teamTag, tournament
+    await connection.execute(sql, [team.teamId, team.tournament, team.teamTag, team.name, team.abrev]);
+    for (const [index, p] of team.playerList.entries()) {
+      await connection.execute(sql_players, [p, index, team.tournament, team.teamId]);
+    }
+    return true;
+  } catch (error) {
+    console.error("Error al insertar el registro:", error);
+    return false;
+  } finally {
+    connection.release();
+  }
+}
+
+module.exports = { 
+  getTournaments, 
+  getTournament,
+  getTournamentTeams, 
+  getRankingATK, 
+  getRankingDEF,
+  getTournamentFormat,
+  newTournament,
+  setTournamentFases,
+  newTeam
+};

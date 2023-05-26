@@ -23,6 +23,10 @@ export class AUsers {
         return this.http.get(`${this.url}/users/${encodeURIComponent(id)}/tournaments`, this.requestOptions);
     }
 
+    getTournamentTeam(tournament:string, user:string):Observable<any>{
+        return this.http.get(`${this.url}/users/${encodeURIComponent(user)}/tournaments/${encodeURIComponent(tournament)}/teams`, this.requestOptions);
+    }
+
     private createHeader(){
 
         const header = {
@@ -33,5 +37,6 @@ export class AUsers {
         }
         return {headers: new HttpHeaders(header)};
     }
+
 
 }

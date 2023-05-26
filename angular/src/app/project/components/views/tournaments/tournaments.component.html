@@ -115,7 +115,7 @@
 
 </header>
 
-<div class="card" routerLink="/tournament/teams">
+<div class="card" (click)="goToTournament(t.id)" *ngFor="let t of this.tournaments">
     <div class="options">
         <div class="optionsDot"></div>
         <div class="optionsDot"></div>
@@ -124,54 +124,14 @@
     <div class="cardId">
         <div class="img"></div>
         <div class="info">
-            <h1>Mirror Cup</h1>
+            <h1>{{t.name}}</h1>
             <p>inscripciones abiertas</p>
         </div>
     </div>
     <div class="labels">
         <div class="label">th15</div>
         <div class="label">5v5</div>
-        <div class="label">15min x 1h</div>
+        <div class="label">{{t.time_format}}</div>
     </div>
-    <p>Eres de los que eligen las bases fáciles?<br>Ataca a espejo y demuestra que no hay ninguna base que se te resiste!!</p>
-</div>
-<div class="card">
-    <div class="options">
-        <div class="optionsDot"></div>
-        <div class="optionsDot"></div>
-        <div class="optionsDot"></div>
-    </div>
-    <div class="cardId">
-        <div class="img"></div>
-        <div class="info">
-            <h1>Mirror Cup</h1>
-            <p>inscripciones abiertas</p>
-        </div>
-    </div>
-    <div class="labels">
-        <div class="label">th15</div>
-        <div class="label">5v5</div>
-        <div class="label">15min x 1h</div>
-    </div>
-    <p>Eres de los que eligen las bases fáciles?<br>Ataca a espejo y demuestra que no hay ninguna base que se te resiste!!</p>
-</div>
-<div class="card">
-    <div class="options">
-        <div class="optionsDot"></div>
-        <div class="optionsDot"></div>
-        <div class="optionsDot"></div>
-    </div>
-    <div class="cardId">
-        <div class="img"></div>
-        <div class="info">
-            <h1>Mirror Cup</h1>
-            <p>inscripciones abiertas</p>
-        </div>
-    </div>
-    <div class="labels">
-        <div class="label">th15</div>
-        <div class="label">5v5</div>
-        <div class="label">15min x 1h</div>
-    </div>
-    <p>Eres de los que eligen las bases fáciles?<br>Ataca a espejo y demuestra que no hay ninguna base que se te resiste!!</p>
+    <p>{{t.description}}</p>
 </div>
