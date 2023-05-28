@@ -18,6 +18,17 @@ export class ATournaments {
     getTournaments():Observable<any>{
         return this.http.get(`${this.url}/tournaments`, this.requestOptions);
     }
+    getTeams(id:string):Observable<any>{
+        return this.http.get(`${this.url}/tournaments/${id}/teams`, this.requestOptions);
+    }
+
+    newTournament(tournament:any):Observable<any>{
+        return this.http.post(`${this.url}/tournaments`, tournament, this.requestOptions);
+    }
+
+    newTeam(team:any):Observable<any>{
+        return this.http.post(`${this.url}/tournaments/teams`, team, this.requestOptions);
+    }
 
     private createHeader(){
 

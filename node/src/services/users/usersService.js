@@ -15,6 +15,11 @@ const getUserTournaments = async (id) => {
     return tournaments;
 }
 
+const getUserOrganitzations = async (id) => {
+    const tournaments = await usersDatabase.getUserOrganitzations(id);
+    return tournaments;
+}
+
 const getUserTeams = async (id) => {
     const teams = await usersDatabase.getUserTeams(id);
     return teams;
@@ -30,4 +35,4 @@ const getTournamentTeam = async (user, tournament) => {
     return team;
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam };
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam,getUserOrganitzations };

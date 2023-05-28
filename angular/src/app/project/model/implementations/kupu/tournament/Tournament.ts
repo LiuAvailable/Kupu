@@ -7,13 +7,15 @@ export class Tournament implements ITournament {
     numPlayers_team!:number;
     time_format!:string;
     fases: ITournament_fase[] = [];
+    organizator!:string;
     finish!: Date;
 
-    constructor(name:string, descripcio:string, numPlayers_team:number, time_format:string){
+    constructor(name:string, descripcio:string, numPlayers_team:number, time_format:string, organizator:string){
         this.name=name;
         this.descripcio=descripcio;
         this.numPlayers_team=numPlayers_team;
         this.time_format=time_format;
+        this.organizator=organizator;
     }
 
     newFase(fase: ITournament_fase) { this.fases.push(fase); }

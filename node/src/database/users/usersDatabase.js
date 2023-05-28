@@ -66,6 +66,18 @@ const getUserTournaments = async (id) => {
     }
 }
 
+const getUserOrganitzations = async (id) => {
+    const connection = await conn.connection();
+    try {
+        const [rows, fields] = await connection.execute('select idTournament from ORGANITZATOR WHERE idUser = ?', [id]);
+        return rows;
+    } catch (error) {
+        throw error;
+    } finally {
+        connection.release();
+    }
+}
+
 const getUserTeams = async (id) => {
     const connection = await conn.connection();
     try {
@@ -116,4 +128,4 @@ const getTournamentTeam = async (user, tournament) => {
     }
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics,getTournamentTeam };
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics,getTournamentTeam,getUserOrganitzations };

@@ -18,13 +18,16 @@ router.get('/tournaments/:id/ranking', tournamentController.getTournamentATK);
 router.get('/tournament_formats', tournamentController.getTournamentsFormats);
 
 router.post('/tournaments', tournamentController.newTournament);
-router.post('/tournaments/team', tournamentController.newTeam)
+router.post('/tournaments/teams', tournamentController.newTeam);
+router.post('/tournaments/matches', tournamentController.createMathces);
+
 
 
 /* users */
 router.get('/users', userController.getUsers)
 router.get('/users/:id', userController.getUser)
 router.get('/users/:id/tournaments', userController.getUserTournaments)
+router.get('/users/:id/organitzations', userController.getUserOrganitzations)
 router.get('/users/:id/teams', userController.getUserTeams)
 router.get('/users/:id/statistics', userController.getUserStatistics)
 

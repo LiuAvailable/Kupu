@@ -249,6 +249,8 @@ input[name='abv-torneo']{width: 95px; margin-left: 4px !important;}
 }
 #inscribe-team button
 {
+    position: relative;
+    z-index: 5;
     border:none;
     outline: none;
 
@@ -258,5 +260,47 @@ input[name='abv-torneo']{width: 95px; margin-left: 4px !important;}
     color: white;
     font-weight: 500;
     border-radius: 5px;
+    margin-bottom: 6rem;
 }
 #inscribe-team button:active{background: #694EDE;}
+
+/********************
+  ORGANITZATOR VIEW
+********************/
+#orgView
+{
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#orgView button
+{
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    height: 65px;
+    width: 60%;
+    background: #4FB0FF;
+    text-transform: uppercase;
+    border-bottom: 4px solid #258FFF;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    box-shadow: 2px 4px 6px #00000010;
+}
+#orgView button::before
+{
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    width: 90%;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.1);
+}
+#orgView button:active{ border-bottom: 3px solid #258FFF; }
+#orgView button:active::before{ height: 22px; width: 92%; }

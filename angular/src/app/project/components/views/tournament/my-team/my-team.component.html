@@ -7,7 +7,10 @@
 
 </header>
 
-<section id="teamData" *ngIf="this.team">
+<section id="orgView" *ngIf="this.org">
+    <button (click)="this.generateMatches()">Crear partidos</button>
+</section>
+<section id="teamData" *ngIf="this.team && !this.org">
     <div>
         <img src="/assets/lleida.png" />
         <div>
@@ -19,7 +22,7 @@
     <p>Jugadores: <strong>5/10</strong></p>
 </section>
 
-<section id="playersBox" *ngIf="this.team">
+<section id="playersBox" *ngIf="this.team && !this.org">
     <h1>Rooster</h1>
     <div id="actions">
         <div class="btnVisibilityType active" (click)="changeRooster(statistics, user, 'statistics')" #statistics></div>
@@ -92,11 +95,11 @@
     </div>
 </section>
 
-<section id="inscribe-team" *ngIf="!this.team">
+<section id="inscribe-team" *ngIf="!this.team && !this.org">
     <h1>Inscribete</h1>
     <p>Informacion del clan</p>
 
-    <input type="text" placeholder="Nombre del torneo" name="nombre-torneo" #name/>
+    <input type="text" placeholder="Nombre del equipo" name="nombre-torneo" #name/>
     <input type="text" maxlength="3" placeholder="Abreviación" name="abv-torneo" #abrev/>
     <input type="text" placeholder="Clan tag" name="clan-tag" #teamTag/>
 

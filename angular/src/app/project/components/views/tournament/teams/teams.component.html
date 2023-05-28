@@ -13,52 +13,10 @@
 </header>
 
 <section id="teams">
-    <div class="team">
-        <p name="short_name">LPT</p>
+    <div class="team" *ngFor="let t of this.teams">
+        <p name="short_name">{{t.abr}}</p>
         <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
-    </div>
-    <div class="team">
-        <p name="short_name">LPT</p>
-        <img src="/assets/lleida.png" />
-        <h1>Lleida Ponent</h1>
-        <p>#8R2Q8G0V</p>
+        <h1>{{t.name}}</h1>
+        <p>{{t.tag}}</p>
     </div>
 </section>

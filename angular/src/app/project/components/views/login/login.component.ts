@@ -67,7 +67,7 @@ export class LoginComponent {
         const token:any = jwt_decode(data.token);
         this.getUserStatistics(token.id)
         this.getTournaments()
-        // this.getUserTournaments(token.id);
+        this.getUserTournaments(token.id);
         this.route.navigate(['home'])
       },
       error => {
@@ -144,7 +144,7 @@ export class LoginComponent {
 
   getUserTournaments(id:string){
     this.Ausers.tournaments(id).subscribe( data => {
-      localStorage.setItem('KupuUserTournaments', JSON.stringify(data));
+      if(!data.data) localStorage.setItem('KupuUserTournaments', JSON.stringify(data));
     },
     error => {
       if (error.status === 422) {
@@ -154,8 +154,7 @@ export class LoginComponent {
       } else {
         console.error(error);
       }
-    }
-  );
+    });
   }
   getTournaments(){
     this.ATournaments.getTournaments().subscribe( data => {

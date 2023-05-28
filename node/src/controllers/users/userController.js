@@ -52,6 +52,20 @@ const getUserTournaments = async (req, res) => {
     } else res.status(422).send({data:'User Id is not valid'});
 }
 
+const getUserOrganitzations = async (req, res) => {
+    const id = decodeURIComponent(req.params.id);
+    if(validateId(id)){
+        try {
+            const tournaments = await usersService.getUserOrganitzations(id);
+            if(tournaments.length > 0) res.status(200).json(tournaments);
+            else res.status(200).send({data:'The user does not have any tournament'})
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({data:'Server Error'});
+        }
+    } else res.status(422).send({data:'User Id is not valid'});
+}
+
 const getUserTeams = async (req, res) => {
     const id = decodeURIComponent(req.params.id);
     if(validateTag(id)){
@@ -112,4 +126,4 @@ const getTournamentTeam = async (req, res) => {
 
 }
 
-module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam };
+module.exports = { getUsers, getUser, getUserTournaments, getUserTeams, getUserStatistics, getTournamentTeam, getUserOrganitzations };

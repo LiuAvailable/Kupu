@@ -20,7 +20,7 @@ export class AUsers {
     }
 
     tournaments(id:string):Observable<any>{
-        return this.http.get(`${this.url}/users/${encodeURIComponent(id)}/tournaments`, this.requestOptions);
+        return this.http.get(`${this.url}/users/${encodeURIComponent(id)}/organitzations`, this.requestOptions);
     }
 
     getTournamentTeam(tournament:string, user:string):Observable<any>{

@@ -27,8 +27,8 @@ export class TournamentsComponent implements OnInit {
     let user:any = localStorage.getItem('KupuUser');
     if(user){
       user = JSON.parse(user)
-      user = user.find((u:any) => u.nivel == '15')
-      user = user.user;
+      //user = user.find((u:any) => u.nivel == '15')
+      user = user[0].user;
     } 
 
     this.Auser.getTournamentTeam(id, user).subscribe( data => {
@@ -45,7 +45,17 @@ export class TournamentsComponent implements OnInit {
   }
 
   saveActualTournament(id:string){
-    localStorage.setItem('Kupu-ActualTournament', JSON.stringify({id}));
-
+    let tournaments:any = localStorage.getItem('KupuUserTournaments');
+    if(tournaments){
+      let tournamentsObj = JSON.parse(tournaments)
+      console.log(tournamentsObj);
+      console.log(id)
+      let org = tournamentsObj.find((tnmt:any) => tnmt.idTournament === id);
+      console.log(org)
+      if(!org) org = 'false';
+      else org = 'true';
+      console.log(org)
+      localStorage.setItem('Kupu-ActualTournament', JSON.stringify({id, org}));
+    } else localStorage.setItem('Kupu-ActualTournament', JSON.stringify({id, org:'false'}));
   }
 }

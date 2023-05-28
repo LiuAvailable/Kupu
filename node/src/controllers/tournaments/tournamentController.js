@@ -33,7 +33,7 @@ const getTournament = async (req, res) => {
 
 const getTournamentTeams = async (req, res) => {
     const id = req.params.id;
-    if(validateTournamentId(id)){
+    if(id){
         try {
             const teams = await tournamentService.getTournamentTeams(id);
             if(teams.length != 0) res.status(200).json(teams)
@@ -100,11 +100,13 @@ const getTournamentsFormats = async (req, res) => {
  * POSTS
  **********/
 const newTournament = async (req, res) => {
+    console.log(req.body);
     const name = req.body.name;
     const descripcio = req.body.descripcio;
     const numPlayers_team = req.body.numPlayers_team;
     const time_format = req.body.time_format;
-    const fi = req.body.fases[req.body.fases.length -1].fi; // data fi última fase
+    const fi = req.body.fases[req.body.fases.length -1]?.fi; // data fi última fase
+    const org = req.body.organizator;
 
     const UUIDdate = dateUUIDformat(new Date())
     const UUIDname = nameUUIDformat(name)
@@ -113,8 +115,8 @@ const newTournament = async (req, res) => {
     const fases = req.body.fases;
 
     // const state = req.body.state;
-    if(name && descripcio && numPlayers_team && time_format && fi && fases.length > 0){
-        let tournament = {id, name, descripcio, numPlayers_team, time_format, fi }
+    if(name && descripcio && numPlayers_team && time_format && fi && fases.length > 0 && org){
+        let tournament = {id, name, descripcio, numPlayers_team, time_format, fi, org }
         try{
             const tournamentId = await tournamentService.newTournament(tournament) // insert tournament
             if(tournamentId) {
@@ -132,7 +134,7 @@ const newTournament = async (req, res) => {
     
                         num_fase ++;
                     });
-                    res.status(200).send({data:'OK'});
+                    res.status(200).send({id:tournamentId});
                 } catch(e){
                     console.log(e)
                     res.status(500).data({data:'internal error'})
@@ -163,6 +165,7 @@ function nameUUIDformat(string) {
 }
 
 const newTeam = async (req, res)=> {
+    console.log(req.body)
     const name = req.body.name;
     const abrev = req.body.abrev;
     const playerList = req.body.playerList;
@@ -170,7 +173,7 @@ const newTeam = async (req, res)=> {
     const teamId = req.body.teamId;
     const teamTag = req.body.teamTag;
 
-    if(name && abrev && playerList.length > 4 && teamId && teamTag && tournament){
+    if(name && abrev && playerList.length > 0 && teamId && teamTag && tournament){
         const team = {name, abrev, playerList, teamId, teamTag, tournament}
         try{
             result = await tournamentService.newTeam(team)
@@ -186,6 +189,30 @@ const newTeam = async (req, res)=> {
     } else res.status(422).send({data:'empty values'});
 }
   
+const createMathces = async (req, res) => {
+    const id = req.body.id;
+    const matches = req.body.matches;
+    if(matches.length > 2 && id){
+        try{
+            let round = 1;
+            for (const match of matches) {
+                console.log(match);
+                let result = await tournamentService.createMatches(id, match, round);
+                if (!result) {
+                  res.status(500).send({ data: 'Error creating matches' });
+                  return; // Agregar un "return" para salir de la función en caso de error
+                }
+                round++;
+              }
+        }catch(e){
+            console.log(e);
+            res.status(500).send({data:'internal error'});
+        }
+    } else res.status(422).send({data:'Few matches provided'});
+
+    res.status(200).send({data:'OK'});
+}
+
 module.exports = { 
     getTournaments, 
     getTournament, 
@@ -193,5 +220,6 @@ module.exports = {
     getTournamentATK, 
     getTournamentsFormats,
     newTournament,
-    newTeam
+    newTeam,
+    createMathces
 };

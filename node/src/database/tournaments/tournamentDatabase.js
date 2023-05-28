@@ -84,10 +84,11 @@ const newTournament = async (tournament) => {
   const sql = `INSERT INTO TOURNAMENT(id, name, description, normativa, logo, numPlayers_team, time_format, finish, state, codi, password) 
   values (?, ?, ?, '', '', ?, ?, ?, 'public', '', '');`
   const selectSql = 'SELECT id FROM TOURNAMENT WHERE id = LAST_INSERT_ID();';
+  const sql_org = `INSERT INTO ORGANITZATOR(idUser,idTournament) values (?,?)`;
   try {
     // Insertar el registro en la base de datos
     await connection.execute(sql, [tournament.id, tournament.name, tournament.descripcio, tournament.numPlayers_team, tournament.time_format, tournament.fi]);
-    
+    await connection.execute(sql_org, [tournament.org, tournament.id]);
     // Obtener el UUID del registro insertado
     const [rows, fields] = await connection.execute(selectSql);
     const id = rows[0].id;
@@ -119,7 +120,7 @@ const newTeam = async (team) => {
   const connection = await conn.connection();
   const sql = `INSERT INTO TEAM(id, tournamentId, tag, name, short_name, state) 
   values (?,?,?,?,?,'active');`
-  const sql_players = `INSERT INTO team_player2(tag, player, tournament, team) VALUES (?,?,?,?)`
+  const sql_players = `INSERT INTO team_player2(tag, player, tournament, team) VALUES (?,?,?,?)`;
   try {
     // Insertar el registro en la base de datos name, abrev, playerList, teamId, teamTag, tournament
     await connection.execute(sql, [team.teamId, team.tournament, team.teamTag, team.name, team.abrev]);
@@ -135,6 +136,22 @@ const newTeam = async (team) => {
   }
 }
 
+const createMatches = async (id, match, round) => {
+  const connection = await conn.connection();
+  const sql = `INSERT INTO TOURNAMENT_MATCH(id, tournament, fase, team, opponent,round, next_match) VALUES(uuid(), ?,1,?,?,?,'')`;
+  try {
+    // Insertar el registro en la base de datos name, abrev, playerList, teamId, teamTag, tournament
+    await connection.execute(sql, [id, match.team, match.opponent, round]);
+    return true;
+  } catch (error) {
+    console.error("Error al insertar el registro:", error);
+    return false;
+  } finally {
+    connection.release();
+  }
+
+}
+
 module.exports = { 
   getTournaments, 
   getTournament,
@@ -144,5 +161,6 @@ module.exports = {
   getTournamentFormat,
   newTournament,
   setTournamentFases,
-  newTeam
+  newTeam,
+  createMatches
 };
