@@ -6,7 +6,7 @@
     <p>Agenda</p>
 </header>
 
-<button class="btnViolet jornadas">Planificación</button>
+<button class="btnViolet jornadas" (click)="this.finishMatch()">Terminar partido</button>
 <!--<button class="btnViolet planification">Jornadas</button>-->
 
 <section id="index" class="jornadas">
@@ -16,61 +16,23 @@
 </section>
 
 <section id="jornadasBox" class="jornadas">
-    <div class="match">
+    <div class="match" *ngFor="let m of this.matches">
         <div class="team">
             <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
+            <h1>{{m.team_short_name}}</h1>
         </div>
         <div class="warInformation">
             <p name="date">16/04</p>
             <p name="hour">23:00</p>
             <div class="result">
-                <p>12</p>
+                <p [ngClass]="{'color': m.stars}">{{m.stars ? m.stars : 0}}</p>
                 <p>-</p>
-                <p>14</p>
+                <p [ngClass]="{'color': m.opponent_stars}">{{m.opponent_stars ? m.opponent_stars : 0}}</p>
             </div>
         </div>
         <div class="team">
             <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
-        </div>
-    </div>
-    <div class="match">
-        <div class="team">
-            <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
-        </div>
-        <div class="warInformation">
-            <p name="date">16/04</p>
-            <p name="hour">23:00</p>
-            <div class="result">
-                <p>12</p>
-                <p>-</p>
-                <p>14</p>
-            </div>
-        </div>
-        <div class="team">
-            <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
-        </div>
-    </div>
-    <div class="match">
-        <div class="team">
-            <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
-        </div>
-        <div class="warInformation">
-            <p name="date">16/04</p>
-            <p name="hour">23:00</p>
-            <div class="result">
-                <p>12</p>
-                <p>-</p>
-                <p>14</p>
-            </div>
-        </div>
-        <div class="team">
-            <img src="/assets/lleida.png" />
-            <h1>LPT</h1>
+            <h1>{{m.opponent_short_name}}</h1>
         </div>
     </div>
 </section>

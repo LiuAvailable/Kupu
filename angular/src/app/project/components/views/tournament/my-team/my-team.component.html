@@ -15,11 +15,12 @@
         <img src="/assets/lleida.png" />
         <div>
             <h1>Lleida Ponent</h1>
-            <p>#8R2Q8G0V</p>
+            <!--<p>#8R2Q8G0V</p>-->
+            <p>#123</p>
         </div>
     </div>
     <p>Abreviación: <strong>LPT</strong></p>
-    <p>Jugadores: <strong>5/10</strong></p>
+    <p>Jugadores: <strong>3/10</strong></p>
 </section>
 
 <section id="playersBox" *ngIf="this.team && !this.org">
@@ -28,69 +29,17 @@
         <div class="btnVisibilityType active" (click)="changeRooster(statistics, user, 'statistics')" #statistics></div>
         <div class="btnVisibilityType" (click)="changeRooster(user, statistics, 'profile')" #user></div>
     </div>
-    <div class="player">
+    <div class="player" *ngFor="let p of this.players">
         <div>
-            <h1>Player 1</h1>
-            <p>#8R2Q8G0V</p>
+            <h1>{{p.name}}</h1>
+            <p>{{p.tag}}</p>
         </div>
         <p class="profile hide">Aldea</p>
         <p class="profile hide">Perfil</p>
         <div class="statistics">
-            <p>9</p>
-            <p>2.4</p>
-            <p>88.7</p>
-        </div>
-    </div>
-    <div class="player">
-        <div>
-            <h1>Player 2</h1>
-            <p>#8R2Q8G0V</p>
-        </div>
-        <p class="profile hide">Aldea</p>
-        <p class="profile hide">Perfil</p>
-        <div class="statistics">
-            <p>9</p>
-            <p>2.4</p>
-            <p>88.7</p>
-        </div>
-    </div>
-    <div class="player">
-        <div>
-            <h1>Player 3</h1>
-            <p>#8R2Q8G0V</p>
-        </div>
-        <p class="profile hide">Aldea</p>
-        <p class="profile hide">Perfil</p>
-        <div class="statistics">
-            <p>9</p>
-            <p>2.4</p>
-            <p>88.7</p>
-        </div>
-    </div>
-    <div class="player">
-        <div>
-            <h1>Player 4</h1>
-            <p>#8R2Q8G0V</p>
-        </div>
-        <p class="profile hide">Aldea</p>
-        <p class="profile hide">Perfil</p>
-        <div class="statistics">
-            <p>9</p>
-            <p>2.4</p>
-            <p>88.7</p>
-        </div>
-    </div>
-    <div class="player">
-        <div>
-            <h1>Player 5</h1>
-            <p>#8R2Q8G0V</p>
-        </div>
-        <p class="profile hide">Aldea</p>
-        <p class="profile hide">Perfil</p>
-        <div class="statistics">
-            <p>9</p>
-            <p>2.4</p>
-            <p>88.7</p>
+            <p>{{p.ataques}}</p>
+            <p>{{p.estrellas}}</p>
+            <p>{{p.porcentaje}}</p>
         </div>
     </div>
 </section>

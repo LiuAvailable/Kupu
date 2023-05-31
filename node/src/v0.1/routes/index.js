@@ -16,6 +16,7 @@ router.get('/tournaments/:id/teams', tournamentController.getTournamentTeams);
 router.get('/tournaments/:id/ranking', tournamentController.getTournamentATK);
 
 router.get('/tournament_formats', tournamentController.getTournamentsFormats);
+router.get('/tournaments/:id/matches', tournamentController.getMathces);
 
 router.post('/tournaments', tournamentController.newTournament);
 router.post('/tournaments/teams', tournamentController.newTeam);

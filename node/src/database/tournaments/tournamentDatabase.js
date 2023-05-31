@@ -152,6 +152,26 @@ const createMatches = async (id, match, round) => {
 
 }
 
+const getMathces = async (id) => { 
+  const connection = await conn.connection();
+  const sql = `SELECT p.*, e1.name AS team_name, e1.short_name AS team_short_name, e2.name AS opponent_name,  e2.short_name AS opponent_short_name
+  FROM TOURNAMENT_MATCH p
+  JOIN team e1 ON p.team = e1.id
+  JOIN team e2 ON p.opponent = e2.id where tournament = ?`;
+  try {
+    // Insertar el registro en la base de datos name, abrev, playerList, teamId, teamTag, tournament
+    const [rows, fields] = await connection.execute(sql, [id]);
+    return rows;
+  } catch (error) {
+    console.error("Error al insertar el registro:", error);
+    return false;
+  } finally {
+    connection.release();
+  }
+}
+
+
+
 module.exports = { 
   getTournaments, 
   getTournament,
@@ -162,5 +182,6 @@ module.exports = {
   newTournament,
   setTournamentFases,
   newTeam,
-  createMatches
+  createMatches,
+  getMathces
 };

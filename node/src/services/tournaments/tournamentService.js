@@ -50,6 +50,11 @@ const createMatches = async (id, match, round) => {
     return result
 }
 
+const getMathces = async (id) => {
+    const matches = await tournamentsDatabase.getMathces(id);
+    return matches;
+}
+
 module.exports = { 
     getTournaments, 
     getTournament, 
@@ -60,5 +65,6 @@ module.exports = {
     newTournament, 
     setTournamentFases, 
     newTeam,
-    createMatches
+    createMatches,
+    getMathces
 };

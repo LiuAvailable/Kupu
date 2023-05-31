@@ -96,6 +96,20 @@ const getTournamentsFormats = async (req, res) => {
 
 }
 
+const getMathces = async (req, res) => {
+    const id = req.params.id;
+    if(id){
+        try {
+            const matches = await tournamentService.getMathces(id);
+            if(matches) res.status(200).send(matches)
+            else res.status(404).send({data:'matches not found'})
+        } catch(e){
+            console.log(e)
+            res.status(500).send({data:'Internal error'})
+        } 
+    } else res.status(422).send({data:'Id required'})
+}
+
 /***********
  * POSTS
  **********/
@@ -221,5 +235,6 @@ module.exports = {
     getTournamentsFormats,
     newTournament,
     newTeam,
-    createMathces
+    createMathces,
+    getMathces
 };

@@ -115,7 +115,7 @@
     font-weight: 600;
 }
 
-.ranking .row > p[name='short_name']{margin-right: 20px; font-weight: 600;}
+.ranking .row > p[name='short_name']{margin-right: 20px; font-weight: 600; width: 46px;}
 .ranking .row > p:not([name='short_name']){width: 46px; text-align: center; position: relative;}
 .ranking .row:first-child > p:not([name='short_name'])::before
 {

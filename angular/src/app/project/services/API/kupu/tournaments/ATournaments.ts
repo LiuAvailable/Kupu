@@ -30,6 +30,14 @@ export class ATournaments {
         return this.http.post(`${this.url}/tournaments/teams`, team, this.requestOptions);
     }
 
+    createMathces(matches:any):Observable<any>{
+        return this.http.post(`${this.url}/tournaments/matches`, matches, this.requestOptions);
+    }
+
+    getMatches(id:any):Observable<any>{
+        return this.http.get(`${this.url}/tournaments/${id}/matches`, this.requestOptions);
+    }
+
     private createHeader(){
 
         const header = {

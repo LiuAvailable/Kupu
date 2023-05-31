@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    width: 120px;
+    width: 140px;
 
     color: white;
     font-size: 16px;
@@ -42,6 +42,7 @@
     display: flex;
     flex-direction: column;
     gap:4px;
+    padding-bottom: 4rem;
 }
 .match
 {
@@ -60,7 +61,7 @@
     overflow: hidden;
     padding: 0 .75rem;
 }
-.match:first-child{background: #007ACC25; margin-bottom: 1.5rem;}
+ /* .match:first-child{background: #007ACC25; margin-bottom: 1.5rem;} */
 
 .team
 {
@@ -114,6 +115,9 @@
     background: var(--violet);
     bottom: -9px;
     border-radius: 4px;
+    left: 50%;
+    transform: translate(-50%);
 }
-.result p:nth-child(1)::before{background: var(--result-loss);}
-.result p:nth-child(3)::before{background: var(--result-win);}
+.result p::before{background: #007ACC40 !important;}
+.result p.color:nth-child(1)::before{background: var(--result-win) !important;}
+.result p.color:nth-child(3)::before{background: var(--result-loss) !important;}

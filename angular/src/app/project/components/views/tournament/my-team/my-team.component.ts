@@ -9,9 +9,23 @@ import { ATournaments } from 'src/app/project/services/API/kupu/tournaments/ATou
 export class MyTeamComponent implements OnInit {
   team!:any;
   org!:boolean;
+  players:any = [
+    {tag:'#0V33ZAD', name:'•S•{Erfan}•E•', ataques: 0, estrellas: 0, porcentaje: 0},
+    {tag:'#0V33ZAT', name:'✨Cinderella✨', ataques: 0, estrellas: 0, porcentaje: 0},
+    {tag:'#0V33ZAU', name:'Billie Baird', ataques: 0, estrellas: 0, porcentaje: 0}
+  ]
+
   constructor(private ATournament:ATournaments) { }
 
   ngOnInit(): void {
+    const partitAcabat = localStorage.getItem('finishedMatch');
+    if(partitAcabat)   this.players = [
+      {tag:'#0V33ZAD', name:'•S•{Erfan}•E•', ataques: 1, estrellas: 3, porcentaje: 100},
+      {tag:'#0V33ZAT', name:'✨Cinderella✨', ataques: 1, estrellas: 2, porcentaje: 92},
+      {tag:'#0V33ZAU', name:'Billie Baird', ataques: 1, estrellas: 2, porcentaje: 86}
+    ];
+
+
     const team = localStorage.getItem('kupu-MyTeam')
     this.team = team;
     const ActualTournament = localStorage.getItem('Kupu-ActualTournament');
@@ -69,27 +83,36 @@ export class MyTeamComponent implements OnInit {
       let id = JSON.parse(tournament).id
 
       let teams:any = [];
-      try{
+      try {
         this.ATournament.getTeams(id).subscribe(data => {
           data.forEach((t:any) => {
             teams.push(t.id);
           })
-          this.leagueFormat(teams, id);
+          const matches = this.leagueFormat(teams);
+          this.ATournament.createMathces({id, matches}).subscribe(data => {console.log(data);})
         });
       } catch(e){console.log(e);}
     }
   }
 
-  leagueFormat(teams:any, id:string){
+  leagueFormat(teams:any){
     const matches = [];
     for(let i=0; i< teams.length; i++){
       let x = i+1;
       while(x < teams.length){
-        matches.push({team:teams[i], opponent:teams[x]})
+        matches.push({team:teams[i], opponent:teams[x], round:0})
         x++;
       }
     }
-    console.log({id, matches})
+    // this.setMatchRound(matches, teams.length);
+    return matches
+  }
+
+  setMatchRound(matches:any, teams:number){
+    const week = [] // teams playing on round 1;
+    while(week.length < teams+1){
+      console.log('AAAA')
+    }
   }
 
 
@@ -113,5 +136,5 @@ export class MyTeamComponent implements OnInit {
  * #0V33ZAD
 #0V33ZAT
 #0V33ZAU
- */
+*/
 
